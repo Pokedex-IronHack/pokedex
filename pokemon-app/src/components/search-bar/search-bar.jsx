@@ -21,7 +21,7 @@ const SearchBar = ({ onSearch }) => {
           className="searchInput"
         />
         <img 
-          src="../../../public/logo.svg"  // Ruta de la imagen
+          src="../../../public/logo.svg"
           alt="Search"
           className="searchIcon"
         />

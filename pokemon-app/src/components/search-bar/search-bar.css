@@ -7,25 +7,20 @@
   
   .searchInput {
     padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
+    border-radius: 50px;  /* Bordes redondeados, igual que en BubbleCard */
     width: 250px;
-    margin-right: 10px;
     font-size: 14px;
+    background-color: #fff;  /* Fondo blanco, igual que el fondo de la tarjeta */
+    border: 1px solid #ccc;  /* Borde gris claro */
+    box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08);  /* Sombra suave como la de BubbleCard */
   }
   
-  .searchButton {
-    padding: 10px 15px;
-    border-radius: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  .searchInput:focus {
+    border-color: #ccc;  /* Cambia el borde a un gris suave cuando está enfocado */
+    outline: none;  /* Elimina el borde por defecto */
+    box-shadow: 0px 3px 9px rgba(30, 10, 60, 0.06), 0px 5px 13px rgba(30, 10, 60, 0.08);  /* Mantiene la sombra en el foco */
   }
   
-  .searchButton:hover {
-    background-color: #0056b3;
-  }
+  .searchInput::placeholder {
+    color: #aaa;  /* Color suave para el texto del pl
   
