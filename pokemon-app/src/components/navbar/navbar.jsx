@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -13,8 +14,7 @@ const Navbar = () => {
       }}
     >
       <div className="container-fluid">
-       
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           <img
             src="/logo.svg" 
             alt="Logo"
@@ -22,20 +22,19 @@ const Navbar = () => {
             height="40"
             className="d-inline-block align-text-top"
           />
-        </a>
+        </Link>
 
-        {/* Links de navegación */}
         <div className="navbar-collapse">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#pokedex">
+              <Link className="nav-link" to="/pokedex">
                 Pokedex
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#favorites">
+              <Link className="nav-link" to="/favorites">
                 Favorites
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
