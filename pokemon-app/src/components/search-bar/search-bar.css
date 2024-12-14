@@ -5,27 +5,43 @@
     margin-bottom: 20px;
   }
   
+  .inputWrapper {
+    position: relative;  
+  }
+  
   .searchInput {
-    padding: 10px;
+    padding: 10px 40px 10px 10px;  
     border-radius: 20px;
-    border: 1px solid #ccc;
-    width: 250px;
-    margin-right: 10px;
-    font-size: 14px;
+    width: 630px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #C2C2C2;
+    box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08);
   }
   
-  .searchButton {
-    padding: 10px 15px;
-    border-radius: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  .searchInput:focus {
+    border-color: rgb(34, 34, 34);
+    outline: none;
+    box-shadow: 0px 3px 9px rgba(30, 10, 60, 0.06), 0px 5px 13px rgba(30, 10, 60, 0.08);
   }
   
-  .searchButton:hover {
-    background-color: #0056b3;
+  .searchInput::placeholder {
+    color: #D8D8D8;
+  }
+  
+  .searchInput:hover {
+    box-shadow: 0px 3px 9px rgba(30, 10, 60, 0.06), 0px 5px 13px rgba(30, 10, 60, 0.08);
+  }
+  
+  .searchIcon {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);  
+    width: 31px; 
+    height: 34px;
+    pointer-events: none; 
   }
   
