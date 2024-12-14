@@ -1,0 +1,77 @@
+.pokemon-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 20px;
+}
+
+/* Header */
+.pokemon-detail h1 {
+    font-size: 2.5rem;
+    color: black; /* Matches the Pokémon branding blue */
+    margin-bottom: 0.5rem;
+}
+
+.pokemon-detail h4 {
+    font-size: 25px;
+    color: black; /* Matches the Pokémon branding blue */
+    margin: 0;
+    padding: 0; 
+}
+.pokemon-detail p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 0;
+}
+
+/* Main body styling */
+.body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    width: 80%;
+    margin-top: 20px;
+}
+.types-weaknesses{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    
+}
+
+ul {
+    list-style: none; /* Removes the bullets */
+    padding: 8px; /* Optional: removes left padding for the list */
+    margin: 0; /* Optional: removes top/bottom margin for the list */
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+    gap: 10px;
+}
+
+.info p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .body {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .info {
+        align-items: center;
+        text-align: center;
+    }
+}

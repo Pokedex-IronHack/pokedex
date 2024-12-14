@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import BubbleCard from '../components/bubble-card/bubble-card'; 
 import SearchBar from '../components/search-bar/search-bar'; 
 
@@ -52,9 +52,9 @@ const Home = () => {
   return (
     <div className="container mt-4">
       <h1 className="text-center mb-4">Pokédex - Primera Generación</h1>
-      <SearchBar onSearch={handleSearch} /> {/* Pasamos la función de búsqueda */}
+      <SearchBar onSearch={handleSearch} /> 
       <div className="d-flex flex-wrap justify-content-center gap-4">
-        <BubbleCard pokemons={filteredPokemons} /> {/* Pasamos los Pokémon filtrados */}
+        <BubbleCard pokemons={filteredPokemons} /> 
       </div>
     </div>
   );
