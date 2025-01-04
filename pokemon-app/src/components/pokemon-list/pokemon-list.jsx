@@ -24,7 +24,7 @@ function PokemonList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(Boolean)); // Filter out failed requests
+        setPokemons(detailedPokemons.filter(Boolean)); 
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
       }

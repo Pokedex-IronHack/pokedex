@@ -6,6 +6,7 @@ const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hasSearchQuery, setHasSearchQuery] = useState (false); 
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -27,7 +28,7 @@ const Home = () => {
         );
 
         setPokemons(detailedPokemons.filter(Boolean));
-        setFilteredPokemons(detailedPokemons.filter(Boolean)); // Inicializamos los Pokémon filtrados
+        setFilteredPokemons(detailedPokemons.filter(Boolean)); 
         setLoading(false);
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
@@ -40,22 +41,27 @@ const Home = () => {
 
   const handleSearch = (query) => {
     const filtered = pokemons.filter(pokemon =>
-      pokemon.name.toLowerCase().includes(query.toLowerCase())
+      pokemon.name.toLowerCase().startsWith(query.toLowerCase())
     );
     setFilteredPokemons(filtered);
+    setHasSearchQuery(query.trim() !== ""); 
   };
 
   if (loading) {
-    return <div>Cargando Pokémon...</div>;
+    return <div>Loading Pokémon...</div>;
   }
 
   return (
     <div className="container mt-4">
-      <h1 className="text-center mb-4">Pokédex - Primera Generación</h1>
+      <h1 className="text-center mb-4">Pokédex - First Generation</h1>
       <SearchBar onSearch={handleSearch} /> 
-      <div className="d-flex flex-wrap justify-content-center gap-4">
-        <BubbleCard pokemons={filteredPokemons} /> 
+      {hasSearchQuery && (
+        <div className="d-flex flex-wrap justify-content-center gap-4">
+      {filteredPokemons.map ((pokemon)=>(
+        <BubbleCard key = {pokemon.id} pokemon = {pokemon} />
+      ))}
       </div>
+      )} 
     </div>
   );
 };

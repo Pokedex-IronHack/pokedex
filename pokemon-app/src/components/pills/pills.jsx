@@ -1,4 +1,3 @@
-import React from "react";
 import "./pills.css"; 
 
 const Pills = ({ type }) => {

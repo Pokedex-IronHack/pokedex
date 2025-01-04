@@ -21,7 +21,7 @@ function PokemonCard ({pokemon}) {
 
     return (
         <div className="pokemon-card">
-            {/* Wrap the entire content inside the Link */}
+            
             <Link to={`/pokedex/${pokemon.id}`} className="card-link">
                 <img
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}

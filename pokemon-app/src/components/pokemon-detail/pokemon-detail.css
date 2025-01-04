@@ -8,16 +8,48 @@
     margin: 20px;
 }
 
-/* Header */
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; 
+    position: relative;
+}
+
+.buttons button{
+    background-color: white;
+    color:black; 
+    padding: 20px; 
+    box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08);
+    border-radius: 30px;
+    border: none; 
+}
+
+.buttons .prev-button {
+    position: absolute; 
+    left: 0; 
+    visibility: hidden;
+}
+
+.buttons .next-button {
+    position: absolute; 
+    right: 0;  
+}
+
+.buttons .prev-button.visible {
+    visibility: visible; 
+}
+
 .pokemon-detail h1 {
     font-size: 2.5rem;
-    color: black; /* Matches the Pokémon branding blue */
+    color: black;
     margin-bottom: 0.5rem;
 }
 
 .pokemon-detail h4 {
     font-size: 25px;
-    color: black; /* Matches the Pokémon branding blue */
+    color: black; 
     margin: 0;
     padding: 0; 
 }
@@ -27,28 +59,71 @@
     margin: 0;
 }
 
-/* Main body styling */
+.types-weaknesses .types-container ,
+.types-weaknesses .weakness-container{
+    background-color: white;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.types-weaknesses .pill{
+    padding: 3px 10px;
+    font-size: 12px;
+    margin: 3px;
+}
+
+.evolution-chain{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+
 .body {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
+    background-color: white;
+    
     gap: 40px;
-    width: 80%;
-    margin-top: 20px;
+    width: 90%;
+    padding: 20px; 
+    margin: 0, auto;
+    border-radius: 30px;
 }
+
+.body .image {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto; /* Automatically centers the element */
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08);
+}
+
 .types-weaknesses{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    
+    width: 30%;
+    gap: 20px;
 }
 
 ul {
-    list-style: none; /* Removes the bullets */
-    padding: 8px; /* Optional: removes left padding for the list */
-    margin: 0; /* Optional: removes top/bottom margin for the list */
+    list-style: none; 
+    padding: 8px;
+    margin: 0; 
 }
 
 .info {
@@ -56,7 +131,6 @@ ul {
     flex-direction: column;
     align-items: flex-start;
     font-size: 1rem;
-    gap: 10px;
 }
 
 .info p {
