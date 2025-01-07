@@ -15,7 +15,7 @@ function PokemonList({ className = "" }) {
         const detailedPokemons = await Promise.all(
           basicPokemons.map(async (pokemon) => {
             try {
-              const details = await api.get(`/pokemon/${pokemon.name}`); // Use name for relative URL
+              const details = await api.get(`/pokemon/${pokemon.name}`); 
               return details.data;
             } catch (error) {
               console.error(`Error fetching details for ${pokemon.name}:`, error);
