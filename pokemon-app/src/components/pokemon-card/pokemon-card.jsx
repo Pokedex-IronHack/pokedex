@@ -2,6 +2,7 @@ import "./pokemon-card.css";
 import { Link } from "react-router-dom";
 import Pills from "../pills/pills";
 import { useFavorites } from "../../context/FavoritesContext";
+import { useTeam } from "../../context/TeamContext";
 
 function PokemonCard ({pokemon}) {
     function formatId(id) {
@@ -17,6 +18,7 @@ function PokemonCard ({pokemon}) {
     }
 
     const {favorites, setFavorites} = useFavorites(); 
+    const {team, setTeam} = useTeam(); 
 
     function toggleFavorites (item) {
         setFavorites((prev)=> 
@@ -25,38 +27,69 @@ function PokemonCard ({pokemon}) {
         : [...prev, item]); 
     }
 
+    function toggleTeam (item) {
+        setTeam((prev) => 
+        prev.includes(item)
+            ? prev.filter ((team)=> team !== item)
+        : [...prev, item]);
+    }
+
     function capitalizeName(name) {
         return name[0].toUpperCase() + name.slice(1).toLowerCase();
     }
     
     const isFavorite = favorites.includes(pokemon.id);
+    const isTeam = team.includes(pokemon.id); 
+
+    function handleFavoriteClick(e) { 
+        e.stopPropagation(); 
+        toggleFavorites(pokemon.id);
+    } 
+
+    function handleTeamClick(e) {
+        e.stopPropagation();
+        toggleTeam(pokemon.id)
+    }
+
 
     return (
         <div className="pokemon-card">
-            
-            <Link to={`/pokedex/${pokemon.id}`} className="card-link">
-                <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-                    className="card-img-top"
-                    alt={pokemon.name}
-                    style={{ width: '200px', height: '200px' }}
-                />
-                <div className="card-body">
-                    <div className="favorite" onClick={() => toggleFavorites(pokemon.id)}>
-                      <i className={`fa ${isFavorite ? 'fa-heart' : 'fa-heart-o'}`} 
-                         aria-hidden="true" 
-                         style={{ color: isFavorite ? 'lightcoral' : 'black' }}></i>
-                    </div>
+            <div className = "icons"> 
+            <div className="add" onClick={handleTeamClick}>
+                <ion-icon 
+                    
+                    name="add-circle"
+                    style={{color: isTeam ? 'lightblue' :'#C0C0C0' }}></ion-icon>
+            </div>
 
-                    <h3 className="fs-6 text-secondary"> Nº {formatId(pokemon.id)} </h3>
-                    <h4 className="card-title mb-1 text-break"> {capitalizeName(pokemon.name)} </h4>
-                    <div className="types">
-                        {pokemon.types.map((typeInfo, index) => (
-                            <Pills key={index} type={typeInfo.type.name} />
-                        ))}
+            <div className="favorite" onClick={handleFavoriteClick}>
+                <ion-icon 
+                    
+                    name="heart-circle" 
+                    style={{ color: isFavorite ? 'lightcoral' : '#C0C0C0 ' }}
+                ></ion-icon>
+            </div>
+            
+            </div>
+            <div className="card-link-wrapper">
+                <Link to={`/pokedex/${pokemon.id}`} className="card-link">
+                    <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+                        className="card-img-top"
+                        alt={pokemon.name}
+                        style={{ width: '200px', height: '200px' }}
+                    />
+                    <div className="card-body">
+                        <h3 className="fs-6 text-secondary"> Nº {formatId(pokemon.id)} </h3>
+                        <h4 className="card-title mb-1 text-break"> {capitalizeName(pokemon.name)} </h4>
+                        <div className="types">
+                            {pokemon.types.map((typeInfo, index) => (
+                                <Pills key={index} type={typeInfo.type.name} />
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         </div>
     );
 }

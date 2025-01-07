@@ -5,10 +5,12 @@ import Favorites from './pages/favorites-page'
 import Navbar from "./components/navbar/navbar"
 import PokemonDetailPage from './pages/pokedex-details'
 import { FavoritesProvider } from './context/FavoritesContext'
+import { TeamProvider } from './context/TeamContext'
 
 function App() {
   return (
     <FavoritesProvider>
+    <TeamProvider>
     <Router>
       <Navbar />
       <Routes>
@@ -18,6 +20,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </Router>
+    </TeamProvider>
     </FavoritesProvider>
   )
 }
