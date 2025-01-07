@@ -11,6 +11,15 @@
     text-align: center;
 }
 
+.icons {
+    display: flex; 
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 80%;
+    font-size: 3rem;
+}
+
 .pokemon-card:hover {
     box-shadow: 0px 3px 9px rgba(30, 10, 60, 0.06), 0px 5px 13px rgba(30, 10, 60, 0.08);
 }
