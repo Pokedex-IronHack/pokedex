@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import BubbleCard from '../components/bubble-card/bubble-card'; 
 import SearchBar from '../components/search-bar/search-bar'; 
+import '../pages/home.css'
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [hasSearchQuery, setHasSearchQuery] = useState (false); 
+  const [hasSearchQuery, setHasSearchQuery] = useState(false); 
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -52,16 +53,21 @@ const Home = () => {
   }
 
   return (
-    <div className="container mt-4">
-      <h1 className="text-center mb-4">Pokédex - First Generation</h1>
-      <SearchBar onSearch={handleSearch} /> 
+    <div className="container">
+      <img src="/public/logo.svg" alt="Pokemon Logo" className="logo" />
+      <div className="circle circle-1"></div>
+      <div className="circle circle-2"></div>
+      <div className="circle circle-3"></div>
+      <div className="circle circle-4"></div>
+      <SearchBar onSearch={handleSearch} className="search-bar-container" />
+      <img src="/public/pikachu.png" alt="Pikachu" className="decorative-pokemon" />
       {hasSearchQuery && (
         <div className="d-flex flex-wrap justify-content-center gap-4">
-      {filteredPokemons.map ((pokemon)=>(
-        <BubbleCard key = {pokemon.id} pokemon = {pokemon} />
-      ))}
-      </div>
-      )} 
+          {filteredPokemons.map((pokemon) => (
+            <BubbleCard key={pokemon.id} pokemon={pokemon} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

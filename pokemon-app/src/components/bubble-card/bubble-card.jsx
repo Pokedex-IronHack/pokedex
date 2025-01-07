@@ -2,12 +2,11 @@ import { useNavigate } from "react-router-dom";
 import "./bubble-card.css";
 
 const BubbleCard = ({ pokemon }) => {
-  const navigate = useNavigate();  // Access the navigate function
+  const navigate = useNavigate();  
 
   const handleCardClick = () => {
-    // Programmatically navigate to the detailed Pokémon page
     navigate(`/pokedex/${pokemon.id}`, { replace: true });
-    window.location.reload();  // Force a page reload
+    window.location.reload();  
   };
 
   return (
