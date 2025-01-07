@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './search-bar.css';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, className }) => {
   const [query, setQuery] = useState('');
 
   const handleChange = (event) => {
     const value = event.target.value;
     setQuery(value);
-    onSearch(value);  // Llamamos a la función pasada como prop
+    onSearch(value);
   };
 
   return (
-    <div className="searchBar">
+    <div className={`searchBar ${className}`}>
       <div className="inputWrapper">
         <input
           type="text"
@@ -20,8 +20,8 @@ const SearchBar = ({ onSearch }) => {
           onChange={handleChange}
           className="searchInput"
         />
-        <img 
-          src="../../../public/searchicon.svg"  // Ruta de la imagen
+        <img
+          src="/public/searchicon.svg" // Ajusta la ruta si es necesario
           alt="Search"
           className="searchIcon"
         />

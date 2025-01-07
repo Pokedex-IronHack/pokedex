@@ -1,55 +1,73 @@
-/* styles/home.css */
 body {
     background: url('/public/bg-home.png') no-repeat;
     background-size: cover;
     position: relative;
     font-family: 'Arial', sans-serif;
     margin: 0;
-    overflow: hidden; /* Evita que se desplace el fondo si hay elementos fuera de la vista */
+    overflow: hidden;
 }
 
 .container {
-    position: relative; /* Clave para que los hijos se posicionen respecto a este */
+    position: relative;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    
+    padding: 50px;
 }
 
+.container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end; /* Esto mueve el contenido de .container2 a la derecha */
+    width: 50%;
+    margin-top: 150px; /* Baja el contenedor .container2 */
+}
+
+.container3 {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    position: relative;
+}
 
 .search-bar-container {
-    position: absolute; /* Permite moverla en relación al contenedor */
-    top: 300px; /* Ajusta según tu diseño para colocarla debajo del logo */
-    left: 50px; /* Desplaza hacia la izquierda */
-    width: 300px; /* Tamaño fijo para que no se estire */
-    z-index: 1; /* Asegura que esté encima de los círculos */
+    margin-top: 20px; /* Espacio entre el logo y la barra de búsqueda */
+    z-index: 1;
+    width: 100%;
+}
+
+.pokemon-list {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    display: flex;
+    flex-wrap: wrap; /* Organiza los Pokémon en varias filas */
+    justify-content: center; /* Centra las filas */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px 0; /* Espacio alrededor de los Pokémon */
+    margin-top: 20px; /* Espacio debajo de la barra de búsqueda */
 }
 
 .logo {
-    position: absolute;
-    top: 180px;
-    left: 100px;
-    width: 350px;
+    width: 300px;
     height: auto;
-    z-index: 10; 
+    z-index: 10;
+    margin-right: 25%;
 }
 
 .decorative-pokemon {
     position: absolute;
-    bottom: 280px;
-    right: 40px;
-    max-width: 350px;
+    bottom: 30%;
+    right: 0;
+    max-width: 400px;
     height: auto;
+    z-index: 5;
 }
-
 
 .circle {
     position: absolute;
     border-radius: 50%;
     opacity: 0.3;
-    z-index: -10; 
+    z-index: -10;
 }
 
 .circle-1 {
@@ -61,11 +79,11 @@ body {
 }
 
 .circle-2 {
-    width: 500px;
-    height: 500px;
-    background-color: #FF6F61; 
-    top: 180px;
-    left: 30px;
+    width: 600px;
+    height: 600px;
+    background-color: #FF6F61;
+    top: 100px;
+    left: 60px;
 }
 
 .circle-3 {
@@ -79,7 +97,7 @@ body {
 .circle-4 {
     width: 400px;
     height: 400px;
-    background-color: #b2b2b2e5; 
+    background-color: #b2b2b2e5;
     bottom: 700px;
     right: 200px;
 }
