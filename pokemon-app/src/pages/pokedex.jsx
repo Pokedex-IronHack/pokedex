@@ -1,8 +1,9 @@
 
 import PokemonList from "../components/pokemon-list/pokemon-list";
+import "../pages/pokedex.css"
 
 const Pokedex = () => {
-    return <div>Pokedex Page 
+    return <div className="pokedex">Pokedex Page 
       
     <PokemonList/></div>;
     

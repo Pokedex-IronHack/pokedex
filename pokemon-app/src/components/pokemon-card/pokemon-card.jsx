@@ -57,14 +57,12 @@ function PokemonCard ({pokemon}) {
             <div className = "icons"> 
             <div className="add" onClick={handleTeamClick}>
                 <ion-icon 
-                    
                     name="add-circle"
                     style={{color: isTeam ? 'lightblue' :'#C0C0C0' }}></ion-icon>
             </div>
 
             <div className="favorite" onClick={handleFavoriteClick}>
                 <ion-icon 
-                    
                     name="heart-circle" 
                     style={{ color: isFavorite ? 'lightcoral' : '#C0C0C0 ' }}
                 ></ion-icon>

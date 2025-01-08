@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { api } from "../../utils/api";
-import PokemonCard from "../pokemon-card/pokemon-card";
-import { useFavorites } from "../../context/FavoritesContext";
+import BubbleCard from "../bubble-card/bubble-card";
+import { useTeam } from "../../context/TeamContext";
 
-function FavoritesList({ className = "" }) {
+function TeamList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);
-  const [loadingFavorites, setLoadingFavorites] = useState(true);  // Added loading state for favorites
-  const { favorites } = useFavorites();
+  const [loadingTeam, setLoadingTeam] = useState(true);  
+  const { team } = useTeam();
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -27,41 +27,37 @@ function FavoritesList({ className = "" }) {
         );
 
         setPokemons(detailedPokemons.filter(Boolean));  
-        setLoadingFavorites(false);  
+        setLoadingTeam(false);  
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
-        setLoadingFavorites(false);  
+        setLoadingTeam(false);  
       }
     };
 
     fetchPokemons();
   }, []);
 
-  if (pokemons.length === 0) {
-    return <div>Loading your favorite Pokémon...</div>;
-  }
-
  
-  const favoritePokemons = pokemons.filter((pokemon) =>
-    favorites.includes(pokemon.id)
+  const yourTeam = pokemons.filter((pokemon) =>
+    team.includes(pokemon.id)
   );
 
   return (
     <div>
-      <h1>Your favorites</h1>
+      <h1>Your team</h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
-        {loadingFavorites ? (  
-          <div>Loading favorite Pokémon...</div>
-        ) : favoritePokemons.length > 0 ? (
-          favoritePokemons.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+        {loadingTeam ? (  
+          <div>Loading your team...</div>
+        ) : yourTeam.length > 0 ? (
+          yourTeam.map((pokemon) => (
+            <BubbleCard key={pokemon.id} pokemon={pokemon} />
           ))
         ) : (
-          <p>No favorite Pokémon selected</p>
+          <p>No Pokémon selected for your team</p>
         )}
       </div>
     </div>
   );
 }
 
-export default FavoritesList;
+export default TeamList;
