@@ -50,7 +50,7 @@ function PokemonList({ className = "" }) {
     return <div>Loading Pokémon...</div>;
   }
 
-  // Filtrado por búsqueda
+
   const handleSearch = (query) => {
     if (query.length >= 2) {
       const filteredBySearch = typeFilteredPokemons.filter(pokemon =>
@@ -64,7 +64,6 @@ function PokemonList({ className = "" }) {
     }
   };
 
-  // Alternar el orden de los Pokémon
   const toggleOrder = () => {
     setIsAscending(!isAscending);
   };
@@ -75,12 +74,10 @@ function PokemonList({ className = "" }) {
     );
   };
 
-  // Mostrar u ocultar el dropdown de tipos
   const toggleTypeDropdown = () => {
     setShowTypeDropdown((prev) => !prev);
   };
 
-  // Manejar la selección de tipo
   const handleTypeToggle = (type) => {
     setSelectedTypes((prevSelectedTypes) =>
       prevSelectedTypes.includes(type)

@@ -1,3 +1,25 @@
-.dropdown-item{
-    cursor: pointer;
+.type-list {
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-wrap: wrap; /* Allow wrapping to next line if needed */
+    gap: 10px; /* Add space between items */
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Remove default list styles */
 }
+
+.dropdown-item{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid grey;
+    width: 120px; 
+    border-radius: 50px;
+}
+
+.type-list .dropdown-item.selected {
+    background-color: lightgray; /* Light blue background */
+    color: #000; /* Black text color */
+    font-weight: bold; /* Emphasize with bold text */
+  }
+  
