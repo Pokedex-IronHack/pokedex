@@ -45,12 +45,12 @@ function PokemonDetail({ id }) {
                 console.log(evolutionResults);
 
                 setLoading(false);
-                })
-                .catch((error) => {
-                    console.log("Error fetching Pokémon:", error);
+            })
+            .catch((error) => {
+                console.log("Error fetching Pokémon:", error);
                 setLoading(false); 
             });
-    }, [currentId]); 
+    }, [currentId]);
 
     useEffect(() => {
         if (currentId === null) return;
@@ -63,7 +63,7 @@ function PokemonDetail({ id }) {
             .catch(() => {
                 setNextPokemon(null); 
             });
-    }, [currentId]); 
+    }, [currentId]);
 
     useEffect(() => {
         if (currentId === null) return;
@@ -76,8 +76,7 @@ function PokemonDetail({ id }) {
             .catch(() => {
                 setPrevPokemon(null);
             });
-    }, [currentId]); 
-
+    }, [currentId]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -116,68 +115,66 @@ function PokemonDetail({ id }) {
 
     return (
         <div className="pokemon-detail">
-            
             <div className="buttons">
-    <button
-        type="button"
-        className={`prev-button ${currentId > 1 ? "visible" : ""}`}
-        onClick={() => setCurrentId((prevId) => Number(prevId) - 1)}
-    >
-        {prevPokemon ? (
-            <>
-                {capitalizeName(prevPokemon.name)} - Nº {formatId(prevPokemon.id)}
-            </>
-        ) : (
-            "Previous Pokémon unavailable"
-        )}
-    </button>
+                <button
+                    type="button"
+                    className={`prev-button ${currentId > 1 ? "visible" : ""}`}
+                    onClick={() => setCurrentId((prevId) => Number(prevId) - 1)}
+                >
+                    {prevPokemon ? (
+                        <>
+                            {capitalizeName(prevPokemon.name)} - Nº {formatId(prevPokemon.id)}
+                        </>
+                    ) : (
+                        "Previous Pokémon unavailable"
+                    )}
+                </button>
 
-    {currentId < 151 && (
-        <button
-            type="button"
-            className="next-button"
-            onClick={() => setCurrentId((prevId) => Number(prevId) + 1)}
-        >
-            {nextPokemon ? (
-                <>
-                    {capitalizeName(nextPokemon.name)} - Nº {formatId(nextPokemon.id)}
-                </>
-            ) : (
-                "Next Pokémon unavailable"
-            )}
-        </button>
-    )}
-     
+                {currentId < 151 && (
+                    <button
+                        type="button"
+                        className="next-button"
+                        onClick={() => setCurrentId((prevId) => Number(prevId) + 1)}
+                    >
+                        {nextPokemon ? (
+                            <>
+                                {capitalizeName(nextPokemon.name)} - Nº {formatId(nextPokemon.id)}
+                            </>
+                        ) : (
+                            "Next Pokémon unavailable"
+                        )}
+                    </button>
+                )}
             </div>
             <h1>{capitalizeName(pokemon.name)}</h1>
             <p>Nº {formatId(pokemon.id)}</p>
             <div className="body">
                 <div className="types-weaknesses">
                     <div className="types-container">
-                    <h4 className="types">Type</h4>
-                    <ul>
-                        {pokemon.types.map((typeInfo, index) => (
-                            <Pills key={index} type={typeInfo.type.name} />
-                        ))}
-                    </ul>
+                        <h4 className="types">Type</h4>
+                        <ul>
+                            {pokemon.types.map((typeInfo, index) => (
+                                <Pills key={index} type={typeInfo.type.name} />
+                            ))}
+                        </ul>
                     </div>
 
-                    <div className = "weakness-container">
-                    <h4 className="weakness">Weakness</h4>
-                    <ul>
-                        {weaknesses.map((weakness, index) => (
-                            <Pills key={index} type={weakness} />
-                        ))}
-                    </ul>
+                    <div className="weakness-container">
+                        <h4 className="weakness">Weakness</h4>
+                        <ul>
+                            {weaknesses.map((weakness, index) => (
+                                <Pills key={index} type={weakness} />
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-                </div>
-                <div className = "image">
-                <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-                    className="card-img-top"
-                    alt={pokemon.name}
-                    style={{ width: '300px', height: 'auto' }}
-                />
+                <div className="image">
+                    <img
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+                        className="card-img-top"
+                        alt={pokemon.name}
+                        style={{ width: '300px', height: 'auto' }}
+                    />
                 </div>
                 <div className="info">
                     <h4>Height:</h4> <p>{(pokemon.height * 0.1).toFixed(2)} m </p>
@@ -190,12 +187,11 @@ function PokemonDetail({ id }) {
                     </ul>
                 </div>
             </div>
-            <div className= "evolution-chain">
+            <div className="evolution-chain">
                 {evolutionData.map((pokemon, index) => (
-                            <BubbleCard key={index} pokemon = {pokemon} />
-                        ))}
+                    <BubbleCard key={index} pokemon={pokemon} showRemoveIcon={false} />
+                ))}
             </div>
-
         </div>
     );
 }
