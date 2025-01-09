@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { api } from "../../utils/api";
 import PokemonCard from "../pokemon-card/pokemon-card";
+import SearchBar from "../search-bar/search-bar";
 
 function PokemonList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);
+  const [filteredPokemons, setFilteredPokemons] = useState([]);
+  const [hasSearchQuery, setHasSearchQuery] = useState(false);
 
   useEffect(() => {
     console.log("Reloading...");
@@ -36,14 +39,35 @@ function PokemonList({ className = "" }) {
   if (pokemons.length === 0) {
     return <div>Loading Pokémon...</div>;
   }
+  
+  const handleSearch = (query) => {
+    if (query.length >= 2) { 
+      const filtered = pokemons.filter(pokemon =>
+        pokemon.name.toLowerCase().startsWith(query.toLowerCase())
+      );
+      setFilteredPokemons(filtered); 
+      setHasSearchQuery(query.trim() !== "");
+    } else {
+      setFilteredPokemons([]); 
+      setHasSearchQuery(false);
+    }
+  };
+
+  const displayedPokemons = hasSearchQuery ? filteredPokemons : pokemons;
 
   return (
     <div>
       <h1>Pokémon List</h1>
+      <SearchBar onSearch={handleSearch} className="search-bar-container"/>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
-        {pokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
+
+      <div className="pokemon-list">
+          {displayedPokemons.map((pokemon) => (
+                <PokemonCard key={pokemon.id} pokemon={pokemon} />
+              ))
+          }
+        </div>
+
       </div>
     </div>
   );
