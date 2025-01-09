@@ -6,7 +6,8 @@ import SearchBar from "../search-bar/search-bar";
 function PokemonList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
-  const [hasSearchQuery, setHasSearchQuery] = useState(false);
+  const [hasFilter, setHasFilter] = useState(false);
+  const [ isAscending, setIsAscending ] = useState (true); 
 
   useEffect(() => {
     console.log("Reloading...");
@@ -46,19 +47,46 @@ function PokemonList({ className = "" }) {
         pokemon.name.toLowerCase().startsWith(query.toLowerCase())
       );
       setFilteredPokemons(filtered); 
-      setHasSearchQuery(query.trim() !== "");
+      setHasFilter(query.trim() !== "");
     } else {
       setFilteredPokemons([]); 
-      setHasSearchQuery(false);
+      setHasFilter(false);
     }
   };
 
-  const displayedPokemons = hasSearchQuery ? filteredPokemons : pokemons;
+  const toggleOrder = () => {
+    setIsAscending(!isAscending);
+  };
+
+  const sortPokemon = (pokemons) => {
+    return [...pokemons].sort((a, b) => 
+      isAscending 
+        ? a.id - b.id 
+        : b.id - a.id 
+    )
+  }
+
+  const displayedPokemons = sortPokemon(hasFilter ? filteredPokemons : pokemons);
 
   return (
     <div>
       <h1>Pokémon List</h1>
       <SearchBar onSearch={handleSearch} className="search-bar-container"/>
+
+      <div className="d-inline-flex gap-2 my-3">
+        <button
+          type="button"
+          className={`btn ${isAscending ? "active" : ""}`}
+          onClick={toggleOrder}
+          style={{ border: "none", boxShadow: "none" }}
+        >
+          {isAscending ? "Ascending" : "Descending"}{" "}
+          <ion-icon
+            name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
+          ></ion-icon>
+        </button>
+      </div>
+
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
 
       <div className="pokemon-list">
