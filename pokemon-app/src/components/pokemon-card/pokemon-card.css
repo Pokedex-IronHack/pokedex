@@ -1,6 +1,6 @@
 .pokemon-card {
     width: 300px;  
-    margin: auto;
+    margin-left: 40px;
     border-radius: 20px;
     display: flex;
     justify-content: center; 
@@ -9,6 +9,7 @@
     gap: 20px;
     flex-direction: column;
     text-align: center;
+    box-shadow: 0px 3px 9px rgba(30, 10, 60, 0.06), 0px 5px 13px rgba(30, 10, 60, 0.08);
 }
 
 .icons {
@@ -22,9 +23,6 @@
     
 }
 
-.pokemon-card:hover {
-    box-shadow: 0px 3px 9px rgba(30, 10, 60, 0.06), 0px 5px 13px rgba(30, 10, 60, 0.08);
-}
 
 .card-link {
     text-decoration: none;  
@@ -32,8 +30,10 @@
 }
 
 .card-body{
-    box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08);
+   
     width: 300px;
     height: 100px;
     border-radius: 20px;
+    margin-bottom: 30px;
 }
+

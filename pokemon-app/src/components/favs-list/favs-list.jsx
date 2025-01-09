@@ -5,7 +5,7 @@ import { useFavorites } from "../../context/FavoritesContext";
 
 function FavoritesList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);
-  const [loadingFavorites, setLoadingFavorites] = useState(true);  // Added loading state for favorites
+  const [loadingFavorites, setLoadingFavorites] = useState(true);
   const { favorites } = useFavorites();
 
   useEffect(() => {
@@ -26,11 +26,11 @@ function FavoritesList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(Boolean));  
-        setLoadingFavorites(false);  
+        setPokemons(detailedPokemons.filter(Boolean));
+        setLoadingFavorites(false);
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
-        setLoadingFavorites(false);  
+        setLoadingFavorites(false);
       }
     };
 
@@ -41,7 +41,6 @@ function FavoritesList({ className = "" }) {
     return <div>Loading your favorite Pokémon...</div>;
   }
 
- 
   const favoritePokemons = pokemons.filter((pokemon) =>
     favorites.includes(pokemon.id)
   );
@@ -50,11 +49,15 @@ function FavoritesList({ className = "" }) {
     <div>
       <h1>Your favorites</h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
-        {loadingFavorites ? (  
+        {loadingFavorites ? (
           <div>Loading favorite Pokémon...</div>
         ) : favoritePokemons.length > 0 ? (
           favoritePokemons.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+            <PokemonCard
+              key={pokemon.id}
+              pokemon={pokemon}
+              showRemoveIcon={true} // acá wey
+            />
           ))
         ) : (
           <p>No favorite Pokémon selected</p>

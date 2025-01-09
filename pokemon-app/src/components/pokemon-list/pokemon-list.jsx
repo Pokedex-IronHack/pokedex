@@ -39,7 +39,7 @@ function PokemonList({ className = "" }) {
 
   return (
     <div>
-      <h1>Pokémon List</h1>
+      
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         {pokemons.map((pokemon) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />

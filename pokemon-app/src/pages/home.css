@@ -1,7 +1,5 @@
 body {
-    background: url('/public/bg-home.png') no-repeat;
-    background-size: cover;
-    position: relative;
+
     font-family: 'Arial', sans-serif;
     margin: 0;
     
@@ -10,6 +8,9 @@ body {
 .home-container {
     max-width: 100%;
     overflow: hidden;
+    background: url('/public/bg-home.png') no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 .container {
@@ -39,20 +40,20 @@ body {
 }
 
 .search-bar-container {
-    margin-top: 20px; /* Espacio entre el logo y la barra de búsqueda */
+    margin-top: 20px; 
     z-index: 1;
     width: 100%;
 }
 
 .pokemon-list {
     min-height: 400px;
-    width: 100%; /* Ocupa todo el ancho disponible */
+    width: 100%; 
     display: flex;
-    flex-wrap: wrap; /* Organiza los Pokémon en varias filas */
-    justify-content: center; /* Centra las filas */
-    gap: 20px; /* Espacio entre las tarjetas */
-    padding: 20px 0; /* Espacio alrededor de los Pokémon */
-    margin-top: 20px; /* Espacio debajo de la barra de búsqueda */
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px 0; 
+    margin-top: 20px; 
 }
 
 .logo {
