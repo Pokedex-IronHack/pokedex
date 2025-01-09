@@ -41,14 +41,14 @@ const Home = () => {
   }, []);
 
   const handleSearch = (query) => {
-    if (query.length >= 2) { // Solo filtrar si el query tiene 2 o más caracteres
+    if (query.length >= 2) { 
       const filtered = pokemons.filter(pokemon =>
         pokemon.name.toLowerCase().startsWith(query.toLowerCase())
       );
-      setFilteredPokemons(filtered.slice(0, 8)); // Limitar a un máximo de 8 resultados
+      setFilteredPokemons(filtered.slice(0, 8)); 
       setHasSearchQuery(query.trim() !== "");
     } else {
-      setFilteredPokemons([]); // Si el query tiene menos de 2 caracteres, limpiar los resultados
+      setFilteredPokemons([]); 
       setHasSearchQuery(false);
     }
   };
@@ -69,7 +69,6 @@ const Home = () => {
         <SearchBar onSearch={handleSearch} className="search-bar-container" />
     
         <div className="pokemon-list">
-          {/* Aquí van los resultados debajo del buscador */}
           {hasSearchQuery && (
             <>
               {filteredPokemons.map((pokemon) => (
