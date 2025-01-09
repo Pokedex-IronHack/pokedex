@@ -46,8 +46,8 @@ function FavoritesList({ className = "" }) {
   );
 
   return (
-    <div>
-      <h1>Your favorites</h1>
+    <div className="favorites-container">
+      <h1 className="titol"> Your favorites</h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         {loadingFavorites ? (
           <div>Loading favorite Pokémon...</div>
