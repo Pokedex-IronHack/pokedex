@@ -11,6 +11,7 @@ function PokemonList({ className = "" }) {
   const [isAscending, setIsAscending] = useState(true);
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedGeneration, setSelectedGeneration] = useState(1);
 
   const types = [
     "normal", "fire", "water", "electric", "grass",
@@ -22,16 +23,16 @@ function PokemonList({ className = "" }) {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await api.get("/pokemon?limit=151");
-        const basicPokemons = response.data.results;
+        const response = await api.get(`/generation/${selectedGeneration}`);
+        const basicPokemons = response.data.pokemon_species;
 
         const detailedPokemons = await Promise.all(
-          basicPokemons.map(async (pokemon) => {
+          basicPokemons.map(async (species) => {
             try {
-              const details = await api.get(`/pokemon/${pokemon.name}`);
+              const details = await api.get(`/pokemon/${species.name}`);
               return details.data;
             } catch (error) {
-              console.error(`Error fetching details for ${pokemon.name}:`, error);
+              console.error(`Error fetching details for ${species.name}:`, error);
               return null;
             }
           })
@@ -44,7 +45,7 @@ function PokemonList({ className = "" }) {
     };
 
     fetchPokemons();
-  }, []);
+  }, [selectedGeneration]);
 
   if (pokemons.length === 0) {
     return <div>Loading Pokémon...</div>;
@@ -119,6 +120,23 @@ function PokemonList({ className = "" }) {
         </button>
       </div>
 
+      <div className="generation-filter">
+        <select
+          id="generation"
+          value={selectedGeneration}
+          onChange={(e) => setSelectedGeneration(Number(e.target.value))}
+      >
+          <option value={1}>Generation 1</option>
+          <option value={2}>Generation 2</option>
+          <option value={3}>Generation 3</option>
+          <option value={4}>Generation 4</option>
+          <option value={5}>Generation 5</option>
+          <option value={6}>Generation 6</option>
+          <option value={7}>Generation 7</option>
+          <option value={8}>Generation 8</option>
+        </select>
+      </div>
+
       <div className="type-filter">
         <button
           type="button"
@@ -132,13 +150,14 @@ function PokemonList({ className = "" }) {
             {types.map((type) => (
               <li
                 key={type}
-                className={`dropdown-item ${
+                className={`dropdown-item ${type} ${
                   selectedTypes.includes(type) ? "selected" : ""
                 }`}
                 onClick={() => handleTypeToggle(type)}
               >
                 {type}
               </li>
+
             ))}
             <li className="dropdown-item clear-selection" onClick={() => setSelectedTypes([])}>
               Clear Selection
