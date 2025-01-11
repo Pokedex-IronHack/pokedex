@@ -27,7 +27,7 @@ function PokemonList({ className = "" }) {
         if (selectedGeneration === 0) {
           // Cuando no se selecciona ninguna generación, obtenemos todos los Pokémon
           let offset = 0;
-          const limit = 1000; // Ajustamos el límite para obtener más Pokémon
+          const limit = 1025; // Ajustamos el límite para obtener más Pokémon
 
           let fetching = true;
           
@@ -61,7 +61,7 @@ function PokemonList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(Boolean)); 
+        setPokemons(detailedPokemons.filter(pokemon => pokemon != null)); 
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
       }
