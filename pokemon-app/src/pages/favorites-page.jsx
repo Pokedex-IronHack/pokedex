@@ -1,6 +1,6 @@
 import FavoritesList from "../components/favs-list/favs-list";
 import TeamList from "../components/team-list/team-list";
-import "../pages/favorites-page.css"
+import "../pages/favorites-page.css";
 
 const FavoritesPage = () => {
   return (
@@ -12,8 +12,7 @@ const FavoritesPage = () => {
             <FavoritesList />
         </div>
     </div>
-    );
-  };
-  
-  export default FavoritesPage;
-  
+  );
+};
+
+export default FavoritesPage;

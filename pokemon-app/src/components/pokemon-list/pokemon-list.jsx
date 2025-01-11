@@ -51,10 +51,9 @@ function PokemonList({ className = "" }) {
     return <div>Loading Pokémon...</div>;
   }
 
-
   const handleSearch = (query) => {
     if (query.length >= 2) {
-      const filteredBySearch = typeFilteredPokemons.filter(pokemon =>
+      const filteredBySearch = typeFilteredPokemons.filter((pokemon) =>
         pokemon.name.toLowerCase().startsWith(query.toLowerCase())
       );
       setFilteredPokemons(filteredBySearch);
@@ -95,8 +94,10 @@ function PokemonList({ className = "" }) {
 
   const displayedPokemons = sortPokemon(
     hasFilter
-      ? filteredPokemons.filter(pokemon =>
-          selectedTypes.every(type => pokemon.types.some(t => t.type.name === type))
+      ? filteredPokemons.filter((pokemon) =>
+          selectedTypes.every((type) =>
+            pokemon.types.some((t) => t.type.name === type)
+          )
         )
       : typeFilteredPokemons
   );
@@ -125,7 +126,7 @@ function PokemonList({ className = "" }) {
           id="generation"
           value={selectedGeneration}
           onChange={(e) => setSelectedGeneration(Number(e.target.value))}
-      >
+        >
           <option value={1}>Generation 1</option>
           <option value={2}>Generation 2</option>
           <option value={3}>Generation 3</option>
@@ -138,11 +139,7 @@ function PokemonList({ className = "" }) {
       </div>
 
       <div className="type-filter">
-        <button
-          type="button"
-          className="btn"
-          onClick={toggleTypeDropdown}
-        >
+        <button type="button" className="btn" onClick={toggleTypeDropdown}>
           Filter by Type
         </button>
         {showTypeDropdown && (
@@ -157,9 +154,11 @@ function PokemonList({ className = "" }) {
               >
                 {type}
               </li>
-
             ))}
-            <li className="dropdown-item clear-selection" onClick={() => setSelectedTypes([])}>
+            <li
+              className="dropdown-item clear-selection"
+              onClick={() => setSelectedTypes([])}
+            >
               Clear Selection
             </li>
           </ul>

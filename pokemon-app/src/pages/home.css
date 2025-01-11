@@ -1,7 +1,5 @@
 body {
-    background: url('/public/bg-home.png') no-repeat;
-    background-size: cover;
-    position: relative;
+
     font-family: 'Arial', sans-serif;
     margin: 0;
     
@@ -10,6 +8,10 @@ body {
 .home-container {
     max-width: 100%;
     overflow: hidden;
+    background: url('/public/bg-home.png') no-repeat;
+    background-size: cover;
+    position: relative;
+    
 }
 
 .container {
@@ -39,20 +41,20 @@ body {
 }
 
 .search-bar-container {
-    margin-top: 20px; /* Espacio entre el logo y la barra de búsqueda */
+    margin-top: 20px; 
     z-index: 1;
     width: 100%;
 }
 
 .pokemon-list {
     min-height: 400px;
-    width: 100%; /* Ocupa todo el ancho disponible */
+    width: 100%; 
     display: flex;
-    flex-wrap: wrap; /* Organiza los Pokémon en varias filas */
-    justify-content: center; /* Centra las filas */
-    gap: 20px; /* Espacio entre las tarjetas */
-    padding: 20px 0; /* Espacio alrededor de los Pokémon */
-    margin-top: 20px; /* Espacio debajo de la barra de búsqueda */
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px 0; 
+    margin-top: 20px; 
 }
 
 .logo {
@@ -74,14 +76,15 @@ body {
 .circle {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.3;
+    opacity: 0.6;
     z-index: -10;
+    filter: blur(10px);
 }
 
 .circle-1 {
     width: 350px;
     height: 350px;
-    background-color: #87CEEB;
+    background-color: #87CEEB; /* Azul */
     top: -200px;
     left: -120px;
 }
@@ -89,7 +92,7 @@ body {
 .circle-2 {
     width: 600px;
     height: 600px;
-    background-color: #FF6F61;
+    background-color: #FF6F61; /* Rojo */
     top: 150px;
     left: 95px;
 }
@@ -97,7 +100,7 @@ body {
 .circle-3 {
     width: 500px;
     height: 500px;
-    background-color: #FFD700;
+    background-color: #FFD700; /* Dorado */
     bottom: -200px;
     right: -200px;
 }
@@ -105,7 +108,7 @@ body {
 .circle-4 {
     width: 400px;
     height: 400px;
-    background-color: #b2b2b2e5;
+    background-color: #b2b2b2e5; /* Gris claro */
     bottom: 700px;
     right: 200px;
 }
