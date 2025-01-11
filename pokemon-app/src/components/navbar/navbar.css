@@ -46,7 +46,7 @@
 
 /* Hover para los enlaces */
 .nav-link:hover {
-    color: #e74c3c; /* Rojo para el hover */
+    color: lightcoral; /* Rojo para el hover */
     transform: scale(1.1); /* Efecto de animación */
 }
 

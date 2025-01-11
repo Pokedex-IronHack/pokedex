@@ -3,7 +3,7 @@ import { api } from "../../utils/api";
 import PokemonCard from "../pokemon-card/pokemon-card";
 import SearchBar from "../search-bar/search-bar";
 import "../pokemon-list/pokemon-list.css";
-import PokeballGif from "../../../public/loading.gif" // Asegúrate de que el GIF esté en tu proyecto.
+import PokeballGif from "../../../public/loading.gif"; // Asegúrate de que el GIF esté en tu proyecto.
 
 const LIMIT = 1025;
 
@@ -14,7 +14,7 @@ function PokemonList({ className = "" }) {
   const [isAscending, setIsAscending] = useState(true);
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedGeneration, setSelectedGeneration] = useState(0); 
+  const [selectedGeneration, setSelectedGeneration] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const types = [
     "normal", "fire", "water", "electric", "grass",
@@ -26,11 +26,11 @@ function PokemonList({ className = "" }) {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        setIsLoading(true); // Mostrar loading antes de empezar la petición.
+        setIsLoading(true);
         let pokemonData = [];
 
         if (selectedGeneration === 0) {
-          const response = await api.get(`/pokemon?limit=${LIMIT} `);
+          const response = await api.get(`/pokemon?limit=${LIMIT}`);
           pokemonData = response.data.results;
         } else {
           const response = await api.get(`/generation/${selectedGeneration}`);
@@ -49,12 +49,12 @@ function PokemonList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(pokemon => pokemon != null));
-        setFilteredPokemons(detailedPokemons.filter(pokemon => pokemon != null));
+        setPokemons(detailedPokemons.filter((pokemon) => pokemon != null));
+        setFilteredPokemons(detailedPokemons.filter((pokemon) => pokemon != null));
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
       } finally {
-        setIsLoading(false); // Ocultar loading cuando termine la petición.
+        setIsLoading(false);
       }
     };
 
@@ -117,22 +117,21 @@ function PokemonList({ className = "" }) {
       <SearchBar onSearch={handleSearch} className="search-bar-container" />
 
       <div className="horizontal-filters">
-        <div className="order-button">
-          <button
-            type="button"
-            className={`btn ${isAscending ? "active" : ""}`}
-            onClick={toggleOrder}
-            style={{ border: "none", boxShadow: "none" }}
-          >
-            {isAscending ? "Ascending" : "Descending"}{" "}
-            <div className="icon">
-              <ion-icon
-                name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
-              ></ion-icon>
-            </div>
-          </button>
-        </div>
+        {/* Ascending/Descending Button */}
+        <button
+          type="button"
+          className="btn ascending"
+          onClick={toggleOrder}
+        >
+          {isAscending ? "Ascending" : "Descending"}
+          <div className="icon">
+            <ion-icon
+              name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
+            ></ion-icon>
+          </div>
+        </button>
 
+        {/* Generation Selector */}
         <select
           value={selectedGeneration}
           onChange={(e) => setSelectedGeneration(Number(e.target.value))}
@@ -149,8 +148,9 @@ function PokemonList({ className = "" }) {
           <option value={8}>Generation 8</option>
         </select>
 
+        {/* Filter by Type Button */}
         <button
-          className="btn"
+          className="btn filter"
           onClick={toggleTypeDropdown}
         >
           Filter by Type
@@ -173,7 +173,7 @@ function PokemonList({ className = "" }) {
         </ul>
       )}
 
-      {isLoading ? ( // Mostrar el GIF mientras carga.
+      {isLoading ? (
         <div className="loading-container">
           <img src={PokeballGif} alt="Loading..." className="loading-gif" />
         </div>

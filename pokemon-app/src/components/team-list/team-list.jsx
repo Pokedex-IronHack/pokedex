@@ -56,7 +56,7 @@ function TeamList({ className = "" }) {
             <BubbleCard key={pokemon.id} pokemon={pokemon} />
           ))
         ) : (
-          <p>No Pokémon selected for your team</p>
+          <p className="subtitol">No Pokémon selected for your team</p>
         )}
       </div>
     </div>

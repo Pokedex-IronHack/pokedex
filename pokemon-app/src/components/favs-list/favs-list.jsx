@@ -64,7 +64,7 @@ function FavoritesList({ className = "" }) {
             />
           ))
         ) : (
-          <p>No favorite Pokémon selected</p>
+          <p className="subtitol">No favorite Pokémon selected</p>
         )}
       </div>
     </div>
