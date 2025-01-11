@@ -93,7 +93,6 @@ function PokemonDetail({ id }) {
         return <div>No Pokémon found</div>;
     }
 
-    // Helper functions
     function formatId(id) {
         return id.toString().padStart(3, "0");
     }
