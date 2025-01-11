@@ -15,20 +15,16 @@ function FavoritesList({ className = "" }) {
         let offset = 0;
         const limit = 1025;
         let fetching = true;
-        
-        // Ciclo para traer todos los Pokémon de todas las generaciones, sin filtros
+    
         while (fetching) {
           const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
           pokemonData = pokemonData.concat(response.data.results);
 
           if (response.data.results.length < limit) {
             fetching = false;
-          } else {
-            offset += limit;
           }
         }
 
-        // Recuperamos los detalles de cada Pokémon
         const detailedPokemons = await Promise.all(
           pokemonData.map(async (pokemon) => {
             try {
@@ -41,7 +37,7 @@ function FavoritesList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(Boolean)); // Filtramos los Pokémon inválidos o nulos
+        setPokemons(detailedPokemons.filter(pokemon => pokemon != null)); // Filtramos los Pokémon inválidos o nulos
         setLoadingFavorites(false);
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
@@ -52,12 +48,10 @@ function FavoritesList({ className = "" }) {
     fetchPokemons();
   }, []);
 
-  // Si no hay Pokémon cargados
   if (pokemons.length === 0) {
     return <div>Loading your favorite Pokémon...</div>;
   }
 
-  // Filtrar los Pokémon que están en favoritos
   const favoritePokemons = pokemons.filter((pokemon) =>
     favorites.includes(pokemon.id)
   );
