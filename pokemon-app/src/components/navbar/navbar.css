@@ -1,0 +1,70 @@
+/* Estilos básicos para el navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #C2C2C2; /* Borde gris claro */
+    border-radius: 50px; /* Bordes redondeados */
+    padding: 10px 40px; /* Relleno interior */
+    box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08); /* Sombra sutil */
+    width: 80%; /* Ancho responsivo */
+    margin: 30px auto; /* Espaciado arriba y abajo */
+    font-family: 'Helvetica', sans-serif; /* Tipografía limpia */
+}
+
+/* Logo */
+.navbar-brand img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease; /* Transición para animación */
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1); /* Efecto de hover */
+}
+
+/* Estilos para el menú de navegación */
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Centrado de los items en el navbar */
+    margin-left: 20px;
+}
+
+.nav-item {
+    margin-left: 20px; /* Espaciado entre los elementos */
+}
+
+.nav-link {
+    color: #333; /* Color gris oscuro */
+    font-weight: 600; /* Texto en negrita */
+    text-transform: uppercase; /* Mayúsculas */
+    font-size: 16px;
+    padding: 8px 16px; /* Espaciado interno para cada enlace */
+    transition: color 0.3s ease, transform 0.3s ease; /* Efectos suaves */
+}
+
+/* Hover para los enlaces */
+.nav-link:hover {
+    color: #e74c3c; /* Rojo para el hover */
+    transform: scale(1.1); /* Efecto de animación */
+}
+
+/* Aseguramos que el navbar sea responsivo */
+@media (max-width: 768px) {
+    .navbar {
+        width: 90%; /* Ancho mayor en pantallas más pequeñas */
+    }
+
+    .navbar-collapse {
+        justify-content: center; /* Centra los items en pantallas pequeñas */
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .nav-item {
+        margin: 10px 0; /* Espaciado más pequeño en pantallas pequeñas */
+    }
+}

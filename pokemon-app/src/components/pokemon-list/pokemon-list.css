@@ -151,3 +151,20 @@
 .generation-select::-ms-expand {
   display: none; /* Para IE */
 }
+
+.loading-container {
+  position: fixed; /* Fija la posición en la pantalla */
+  top: 70%; /* Centra verticalmente */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta para un perfecto centrado */
+  z-index: 9999; /* Asegura que se muestre por encima de otros elementos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo para el gif de carga */
+.loading-container img {
+  width: 300px; /* Tamaño más grande del gif */
+  height: auto; /* Mantiene las proporciones del gif */
+}
