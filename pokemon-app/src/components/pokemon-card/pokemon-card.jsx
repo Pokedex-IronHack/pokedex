@@ -4,7 +4,8 @@ import Pills from "../pills/pills";
 import { useFavorites } from "../../context/FavoritesContext";
 import { useTeam } from "../../context/TeamContext";
 
-function PokemonCard ({pokemon}) {
+
+function PokemonCard ({pokemon, showWarning, setShowWarning}) {
     function formatId(id) {
         let formattedId;
         if (id.toString().length === 1) {
@@ -27,11 +28,12 @@ function PokemonCard ({pokemon}) {
         : [...prev, item]); 
     }
 
-    function toggleTeam (item) {
-        setTeam((prev) => 
-        prev.includes(item)
-            ? prev.filter ((team)=> team !== item)
-        : [...prev, item]);
+    function toggleTeam(item) {
+        setTeam((prev) =>
+          prev.includes(item)
+            ? prev.filter((team) => team !== item)
+            : [...prev, item]
+        );
     }
 
     function formatName(name) {
@@ -51,8 +53,19 @@ function PokemonCard ({pokemon}) {
 
     function handleTeamClick(e) {
         e.stopPropagation();
-        toggleTeam(pokemon.id)
+        
+        if (team.length >= 6 && !isTeam) {
+            setShowWarning(true);
+        } else {
+            setShowWarning(false); 
+            setTeam((prev) =>
+                prev.includes(pokemon.id)
+                    ? prev.filter((team) => team !== pokemon.id)
+                    : [...prev, pokemon.id]
+            );
+        }
     }
+    
 
 
     return (
@@ -72,6 +85,7 @@ function PokemonCard ({pokemon}) {
             </div>
             
             </div>
+            
             <div className="card-link-wrapper">
                 <Link to={`/pokedex/${pokemon.id}`} className="card-link">
                     <img

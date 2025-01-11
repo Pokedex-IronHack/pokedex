@@ -1,7 +1,38 @@
-.team-cards{
-    display:flex; 
-    flex-direction: row;
-    align-items: center;
+.deck {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .carousel {
+    width: 800px;
+    margin: 0 auto;
+  }
+  
+  .slick-slide {
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    opacity: 0.5;
+  }
+  
+  .slick-center {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  .carousel-card {
+    display: flex;
     justify-content: center;
-    gap: 20px;
-}
+    align-items: center;
+  }
+  
+  .carousel-card img {
+    width: 100%;
+    max-width: 250px; /* Adjust as needed */
+    border-radius: 10px;
+  }
+  

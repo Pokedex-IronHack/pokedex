@@ -11,6 +11,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [hasSearchQuery, setHasSearchQuery] = useState(false);
 
+  const [showWarning, setShowWarning] = useState(false);
+  
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
@@ -72,7 +74,7 @@ const Home = () => {
         <div className="pokemon-list">
           {hasSearchQuery &&
             filteredPokemons.map((pokemon) => (
-              <BubbleCard key={pokemon.id} pokemon={pokemon} showRemoveIcon={false} />
+              <BubbleCard key={pokemon.id} pokemon={pokemon} showRemoveIcon={false} showWarning={showWarning} setShowWarning={setShowWarning}/>
             ))}
         </div>
       </div>

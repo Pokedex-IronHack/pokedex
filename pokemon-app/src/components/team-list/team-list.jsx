@@ -5,9 +5,9 @@ import { useTeam } from "../../context/TeamContext";
 
 const LIMIT = 1025;
 
-function TeamList({ className = "" }) {
+function TeamList({ className = ""}) {
   const [pokemons, setPokemons] = useState([]);
-  const [loadingTeam, setLoadingTeam] = useState(true);  
+  const [loadingTeam, setLoadingTeam] = useState(true);   
   const { team } = useTeam();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function TeamList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(Boolean));  
+        setPokemons(detailedPokemons.filter(pokemon => pokemon != null ));  
         setLoadingTeam(false);  
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);

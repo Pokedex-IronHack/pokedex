@@ -5,10 +5,11 @@ import { useFavorites } from "../../context/FavoritesContext";
 
 const LIMIT = 1025;
 
-function FavoritesList({ className = "" }) {
+function FavoritesList({ className = "", showWarning, setShowWarning}) {
   const [pokemons, setPokemons] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
   const { favorites } = useFavorites();
+
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -30,7 +31,7 @@ function FavoritesList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(pokemon => pokemon != null)); +
+        setPokemons(detailedPokemons.filter((pokemon) => pokemon != null));
         setLoadingFavorites(false);
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
@@ -54,13 +55,17 @@ function FavoritesList({ className = "" }) {
       <h1 className="favs-titol">Your favorites</h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         {loadingFavorites ? (
-          <div>Loading favorite Pokémon...</div>
+          <div className="loading-container-fav">
+            <img src="https://i.giphy.com/nMy8HTFQRWpudNwbxQ.webp" alt="Loading..." className="loading-gif" />
+          </div>
         ) : favoritePokemons.length > 0 ? (
           favoritePokemons.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
               pokemon={pokemon}
               showRemoveIcon={true}
+              showWarning={showWarning}
+              setShowWarning={setShowWarning}
             />
           ))
         ) : (

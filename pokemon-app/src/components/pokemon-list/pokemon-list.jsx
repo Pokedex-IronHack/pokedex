@@ -3,7 +3,7 @@ import { api } from "../../utils/api";
 import PokemonCard from "../pokemon-card/pokemon-card";
 import SearchBar from "../search-bar/search-bar";
 import "../pokemon-list/pokemon-list.css";
-import PokeballGif from "../../../public/loading.gif"; // Asegúrate de que el GIF esté en tu proyecto.
+import PokeballGif from "../../../public/loading.gif"; 
 
 const LIMIT = 1025;
 
@@ -146,9 +146,9 @@ function PokemonList({ className = "" }) {
           <option value={6}>Generation 6</option>
           <option value={7}>Generation 7</option>
           <option value={8}>Generation 8</option>
+          <option value={9}>Generation 9</option>
         </select>
 
-        {/* Filter by Type Button */}
         <button
           className="btn filter"
           onClick={toggleTypeDropdown}
