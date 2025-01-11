@@ -30,7 +30,7 @@ function FavoritesList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(pokemon => pokemon != null)); // Filtramos los Pokémon inválidos o nulos
+        setPokemons(detailedPokemons.filter(pokemon => pokemon != null)); +
         setLoadingFavorites(false);
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);

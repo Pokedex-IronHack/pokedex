@@ -4,6 +4,8 @@ import PokemonCard from "../pokemon-card/pokemon-card";
 import SearchBar from "../search-bar/search-bar";
 import "../pokemon-list/pokemon-list.css";
 
+const LIMIT = 1025;
+
 function PokemonList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
@@ -23,32 +25,18 @@ function PokemonList({ className = "" }) {
     const fetchPokemons = async () => {
       try {
         let pokemonData = [];
-        
+
         if (selectedGeneration === 0) {
-          // Cuando no se selecciona ninguna generación, obtenemos todos los Pokémon
-          let offset = 0;
-          const limit = 1025; // Ajustamos el límite para obtener más Pokémon
-
-          let fetching = true;
-          
-          while (fetching) {
-            const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
-            pokemonData = pokemonData.concat(response.data.results);
-
-            if (response.data.results.length < limit) {
-              fetching = false;  // No hay más Pokémon
-            } else {
-              offset += limit;  // Incrementamos el offset para traer más Pokémon
-            }
-          }
+          // Fetch all Pokémon within the predefined limit
+          const response = await api.get(`/pokemon?limit=${LIMIT}`);
+          pokemonData = response.data.results;
         } else {
-          // Cuando se selecciona una generación específica, obtenemos los Pokémon de esa generación
+          // Fetch Pokémon for the selected generation
           const response = await api.get(`/generation/${selectedGeneration}`);
-          const basicPokemons = response.data.pokemon_species;
-          pokemonData = basicPokemons;
+          pokemonData = response.data.pokemon_species;
         }
 
-        // Traemos los detalles de cada Pokémon
+        // Fetch detailed Pokémon data
         const detailedPokemons = await Promise.all(
           pokemonData.map(async (pokemon) => {
             try {
@@ -61,7 +49,9 @@ function PokemonList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(pokemon => pokemon != null)); 
+        // Set valid Pokémon data
+        setPokemons(detailedPokemons.filter(pokemon => pokemon != null));
+        setFilteredPokemons(detailedPokemons.filter(pokemon => pokemon != null));
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
       }
