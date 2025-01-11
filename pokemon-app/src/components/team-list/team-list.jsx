@@ -47,7 +47,7 @@ function TeamList({ className = "" }) {
 
   return (
     <div>
-      <h1 className="titol"> Your team </h1>
+      <h1 className="favs-titol"> Your team </h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         {loadingTeam ? (  
           <div>Loading your team...</div>

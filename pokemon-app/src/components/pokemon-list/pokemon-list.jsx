@@ -3,6 +3,7 @@ import { api } from "../../utils/api";
 import PokemonCard from "../pokemon-card/pokemon-card";
 import SearchBar from "../search-bar/search-bar";
 import "../pokemon-list/pokemon-list.css";
+import PokeballGif from "../../../public/loading.gif" // Asegúrate de que el GIF esté en tu proyecto.
 
 const LIMIT = 1025;
 
@@ -14,6 +15,7 @@ function PokemonList({ className = "" }) {
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedGeneration, setSelectedGeneration] = useState(0); 
+  const [isLoading, setIsLoading] = useState(true);
   const types = [
     "normal", "fire", "water", "electric", "grass",
     "ice", "fighting", "poison", "ground", "flying",
@@ -24,6 +26,7 @@ function PokemonList({ className = "" }) {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
+        setIsLoading(true); // Mostrar loading antes de empezar la petición.
         let pokemonData = [];
 
         if (selectedGeneration === 0) {
@@ -50,6 +53,8 @@ function PokemonList({ className = "" }) {
         setFilteredPokemons(detailedPokemons.filter(pokemon => pokemon != null));
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
+      } finally {
+        setIsLoading(false); // Ocultar loading cuando termine la petición.
       }
     };
 
@@ -168,13 +173,19 @@ function PokemonList({ className = "" }) {
         </ul>
       )}
 
-      <div className={`d-flex flex-wrap gap-3 ${className}`}>
-        <div className="pokemon-list">
-          {displayedPokemons.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
+      {isLoading ? ( // Mostrar el GIF mientras carga.
+        <div className="loading-container">
+          <img src={PokeballGif} alt="Loading..." className="loading-gif" />
         </div>
-      </div>
+      ) : (
+        <div className={`d-flex flex-wrap gap-3 ${className}`}>
+          <div className="pokemon-list">
+            {displayedPokemons.map((pokemon) => (
+              <PokemonCard key={pokemon.id} pokemon={pokemon} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

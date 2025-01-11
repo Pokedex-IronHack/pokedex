@@ -1,18 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './navbar.css'; // Asegúrate de tener la ruta correcta
 
 const Navbar = () => {
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-light"
-      style={{
-        width: "40%", 
-        backgroundColor: "white", 
-        border: "1px solid grey",
-        borderRadius: "35px", 
-        margin: "0 auto"
-      }}
-    >
+    <nav className="navbar navbar-expand-lg navbar-light custom-navbar">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img

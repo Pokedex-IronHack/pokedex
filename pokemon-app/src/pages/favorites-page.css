@@ -11,3 +11,9 @@
     visibility:visible; 
 }
 
+.favs-titol {
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: bold;
+    margin-top: 20px;
+}
