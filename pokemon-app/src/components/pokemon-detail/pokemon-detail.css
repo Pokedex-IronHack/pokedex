@@ -74,7 +74,12 @@
     min-width: 250px; 
     box-sizing: border-box; 
 }
-
+ .info-card ul {
+    display: flex; 
+    flex-direction: column;
+    text-align: left;
+    
+ }
 .info-card h4 {
     font-size: 20px;
     font-weight: bold;
