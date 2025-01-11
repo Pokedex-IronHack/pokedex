@@ -105,8 +105,9 @@ function PokemonList({ className = "" }) {
     <div>
       <h1>Pokémon List</h1>
       <SearchBar onSearch={handleSearch} className="search-bar-container" />
-
-      <div className="d-inline-flex gap-2 my-3">
+      
+      <div className="horizontal-filters">
+      <div className="order-button">
         <button
           type="button"
           className={`btn ${isAscending ? "active" : ""}`}
@@ -114,9 +115,11 @@ function PokemonList({ className = "" }) {
           style={{ border: "none", boxShadow: "none" }}
         >
           {isAscending ? "Ascending" : "Descending"}{" "}
+          <div className="icon">
           <ion-icon
             name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
           ></ion-icon>
+          </div>
         </button>
       </div>
 
@@ -135,6 +138,7 @@ function PokemonList({ className = "" }) {
           <option value={7}>Generation 7</option>
           <option value={8}>Generation 8</option>
         </select>
+      </div>
       </div>
 
       <div className="type-filter">
