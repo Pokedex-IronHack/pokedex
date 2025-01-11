@@ -3,6 +3,8 @@ import { api } from "../../utils/api";
 import PokemonCard from "../pokemon-card/pokemon-card";
 import { useFavorites } from "../../context/FavoritesContext";
 
+const LIMIT = 1025;
+
 function FavoritesList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
@@ -12,18 +14,9 @@ function FavoritesList({ className = "" }) {
     const fetchPokemons = async () => {
       try {
         let pokemonData = [];
-        let offset = 0;
-        const limit = 1025;
-        let fetching = true;
-    
-        while (fetching) {
-          const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
-          pokemonData = pokemonData.concat(response.data.results);
-
-          if (response.data.results.length < limit) {
-            fetching = false;
-          }
-        }
+        
+        const response = await api.get(`/pokemon?limit=${LIMIT}`);
+        pokemonData = pokemonData.concat(response.data.results);
 
         const detailedPokemons = await Promise.all(
           pokemonData.map(async (pokemon) => {
