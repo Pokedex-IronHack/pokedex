@@ -1,3 +1,14 @@
 .pokedex .add{
     visibility: hidden;
 }
+
+.pokedex {
+   margin-top: 50px;
+  
+}
+
+.titol {
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
