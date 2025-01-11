@@ -31,7 +31,6 @@
     
 }
 
-/* Título y número del Pokémon */
 .pokemon-title {
     text-align: center;
     margin-bottom: 20px;
@@ -39,14 +38,14 @@
 
 .pokemon-title h1 {
     font-size: 36px;
-    color: #000000; /* Texto gris oscuro */
+    color: #000000; 
     text-transform: capitalize;
-    font-weight: bold; /* Título en negrita */
+    font-weight: bold;
 }
 
 .pokemon-title p {
     font-size: 20px;
-    color: #8d8b8b; /* Texto gris */
+    color: #8d8b8b;
 }
 
 .height-weight-card {
@@ -60,7 +59,6 @@
     text-align: center;
 }
 
-/* Info Card (Left) */
 .info-card {
     background-color: #ffffff;
     padding: 40px;
@@ -71,10 +69,10 @@
     gap: 15px;
     align-items: center;
     text-align: center;
-    flex: 1 1 300px; /* Esto asegura que las tarjetas se expandan pero no más de 300px */
-    max-width: 300px; /* Limita el tamaño máximo */
-    min-width: 250px; /* Define el tamaño mínimo */
-    box-sizing: border-box; /* Asegura que el padding no cause desbordamientos */
+    flex: 1 1 300px; 
+    max-width: 300px; 
+    min-width: 250px; 
+    box-sizing: border-box; 
 }
 
 .info-card h4 {
@@ -86,26 +84,24 @@
     font-size: 18px;
 }
 
-/* Image (Center) */
 .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    width: 400px; /* Mantén el tamaño consistente */
-    height: 400px;
+    width: 350px; 
+    height: 350px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .image-container img {
-    width: 90%; /* Mantiene la imagen dentro del contenedor */
+    width: 80%; 
     height: auto;
-    object-fit: cover; /* Mantiene la proporción y cubre el contenedor sin distorsión */
+    object-fit: cover; 
 }
 
-/* Types & Weaknesses Card (Right) */
 .types-weakness-card {
     width: 200px;
     height: auto;
@@ -118,10 +114,10 @@
     gap: 15px;
     align-items: center;
     text-align: center;
-    flex: 1 1 300px; /* Esto asegura que las tarjetas se expandan pero no más de 300px */
-    max-width: 300px; /* Limita el tamaño máximo */
-    min-width: 250px; /* Define el tamaño mínimo */
-    box-sizing: border-box; /* Asegura que el padding no cause desbordamientos */
+    flex: 1 1 300px; 
+    max-width: 300px;
+    min-width: 250px; 
+    box-sizing: border-box; 
 }
 
 .types-weakness-card h4 {
@@ -138,7 +134,7 @@
     padding: 0;
 }
 
-/* Pills Styling */
+
 .types-weakness-card .pills,
 .info-card .pills {
     padding: 10px 15px;
@@ -148,7 +144,6 @@
     font-size: 14px;
 }
 
-/* Evolution Chain (Bottom) */
 .evolution-chain {
     display: flex;
     justify-content: center;
@@ -176,30 +171,30 @@
 }
 
 .navigation-buttons button {
-    background-color: #ffffff; /* Fondo blanco */
-    color: #000; /* Texto negro */
+    background-color: #ffffff; 
+    color: #000; 
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Mismo box-shadow */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .navigation-buttons button:hover {
-    transform: translateY(-2px); /* Pequeño efecto de elevación al pasar el cursor */
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15); /* Más sombra al pasar el cursor */
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15); 
 }
 
 .navigation-buttons button:active {
-    transform: translateY(1px); /* Efecto de presión */
-    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1); /* Menos sombra al presionar */
+    transform: translateY(1px); 
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1); 
 }
 
 .navigation-buttons button:disabled {
-    background-color: #f0f0f0; /* Fondo gris claro */
-    color: #b0b0b0; /* Texto gris */
+    background-color: #f0f0f0;
+    color: #b0b0b0;
     cursor: not-allowed;
-    box-shadow: none; /* Sin sombra */
+    box-shadow: none;
 }
