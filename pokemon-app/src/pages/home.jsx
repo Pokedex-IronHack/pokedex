@@ -57,9 +57,6 @@ const Home = () => {
     }
   };
 
-  if (loading) {
-    return <div>Loading Pokémon...</div>;
-  }
 
   return (
     <div className="container home-container">
