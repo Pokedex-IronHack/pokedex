@@ -125,7 +125,23 @@ function PokemonList({ className = "" }) {
     <div>
       <SearchBar onSearch={handleSearch} className="search-bar-container" />
 
-      <div className="navigation-buttons">
+      <div className="horizontal-filters">
+        <div className="order-button">
+          <button
+            type="button"
+            className={`btn ${isAscending ? "active" : ""}`}
+            onClick={toggleOrder}
+            style={{ border: "none", boxShadow: "none" }}
+          >
+            {isAscending ? "Ascending" : "Descending"}{" "}
+            <div className="icon">
+              <ion-icon
+                name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
+              ></ion-icon>
+            </div>
+          </button>
+        </div>
+
         <select
           value={selectedGeneration}
           onChange={(e) => setSelectedGeneration(Number(e.target.value))}
@@ -141,13 +157,6 @@ function PokemonList({ className = "" }) {
           <option value={7}>Generation 7</option>
           <option value={8}>Generation 8</option>
         </select>
-
-        <button
-          className="btn"
-          onClick={toggleOrder}
-        >
-          {isAscending ? "Ascending" : "Descending"}
-        </button>
 
         <button
           className="btn"
