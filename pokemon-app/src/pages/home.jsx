@@ -73,7 +73,7 @@ const Home = () => {
         <div className="pokemon-list">
           {hasSearchQuery &&
             filteredPokemons.map((pokemon) => (
-              <BubbleCard key={pokemon.id} pokemon={pokemon} />
+              <BubbleCard key={pokemon.id} pokemon={pokemon} showRemoveIcon={false} />
             ))}
         </div>
       </div>
