@@ -28,6 +28,12 @@ const Navbar = () => {
                 Favorites
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/deck">
+                Deck
+              </Link>
+            </li>
+            
           </ul>
         </div>
       </div>
