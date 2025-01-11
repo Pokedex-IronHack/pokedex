@@ -3,6 +3,8 @@ import BubbleCard from "../components/bubble-card/bubble-card";
 import SearchBar from "../components/search-bar/search-bar";
 import "../pages/home.css";
 
+const POKEMONS_LIMIT = 1025;
+
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
@@ -12,7 +14,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${POKEMONS_LIMIT}`);
         const data = await response.json();
         const basicPokemons = data.results;
 
@@ -55,9 +57,6 @@ const Home = () => {
     }
   };
 
-  if (loading) {
-    return <div>Loading Pokémon...</div>;
-  }
 
   return (
     <div className="container home-container">

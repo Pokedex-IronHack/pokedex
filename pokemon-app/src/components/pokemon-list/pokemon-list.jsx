@@ -11,8 +11,7 @@ function PokemonList({ className = "" }) {
   const [isAscending, setIsAscending] = useState(true);
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedGeneration, setSelectedGeneration] = useState(1);
-
+  const [selectedGeneration, setSelectedGeneration] = useState(0); // 0 representará "All"
   const types = [
     "normal", "fire", "water", "electric", "grass",
     "ice", "fighting", "poison", "ground", "flying",
@@ -23,22 +22,46 @@ function PokemonList({ className = "" }) {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await api.get(`/generation/${selectedGeneration}`);
-        const basicPokemons = response.data.pokemon_species;
+        let pokemonData = [];
+        
+        if (selectedGeneration === 0) {
+          // Cuando no se selecciona ninguna generación, obtenemos todos los Pokémon
+          let offset = 0;
+          const limit = 1025; // Ajustamos el límite para obtener más Pokémon
 
+          let fetching = true;
+          
+          while (fetching) {
+            const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
+            pokemonData = pokemonData.concat(response.data.results);
+
+            if (response.data.results.length < limit) {
+              fetching = false;  // No hay más Pokémon
+            } else {
+              offset += limit;  // Incrementamos el offset para traer más Pokémon
+            }
+          }
+        } else {
+          // Cuando se selecciona una generación específica, obtenemos los Pokémon de esa generación
+          const response = await api.get(`/generation/${selectedGeneration}`);
+          const basicPokemons = response.data.pokemon_species;
+          pokemonData = basicPokemons;
+        }
+
+        // Traemos los detalles de cada Pokémon
         const detailedPokemons = await Promise.all(
-          basicPokemons.map(async (species) => {
+          pokemonData.map(async (pokemon) => {
             try {
-              const details = await api.get(`/pokemon/${species.name}`);
+              const details = await api.get(`/pokemon/${pokemon.name}`);
               return details.data;
             } catch (error) {
-              console.error(`Error fetching details for ${species.name}:`, error);
+              console.error(`Error fetching details for ${pokemon.name}:`, error);
               return null;
             }
           })
         );
 
-        setPokemons(detailedPokemons.filter(Boolean));
+        setPokemons(detailedPokemons.filter(pokemon => pokemon != null)); 
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
       }
@@ -46,10 +69,6 @@ function PokemonList({ className = "" }) {
 
     fetchPokemons();
   }, [selectedGeneration]);
-
-  if (pokemons.length === 0) {
-    return <div>Loading Pokémon...</div>;
-  }
 
   const handleSearch = (query) => {
     if (query.length >= 2) {
@@ -104,29 +123,31 @@ function PokemonList({ className = "" }) {
 
   return (
     <div>
-      <h1>Pokémon List</h1>
       <SearchBar onSearch={handleSearch} className="search-bar-container" />
 
-      <div className="d-inline-flex gap-2 my-3">
-        <button
-          type="button"
-          className={`btn ${isAscending ? "active" : ""}`}
-          onClick={toggleOrder}
-          style={{ border: "none", boxShadow: "none" }}
-        >
-          {isAscending ? "Ascending" : "Descending"}{" "}
-          <ion-icon
-            name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
-          ></ion-icon>
-        </button>
-      </div>
+      <div className="horizontal-filters">
+        <div className="order-button">
+          <button
+            type="button"
+            className={`btn ${isAscending ? "active" : ""}`}
+            onClick={toggleOrder}
+            style={{ border: "none", boxShadow: "none" }}
+          >
+            {isAscending ? "Ascending" : "Descending"}{" "}
+            <div className="icon">
+              <ion-icon
+                name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
+              ></ion-icon>
+            </div>
+          </button>
+        </div>
 
-      <div className="generation-filter">
         <select
-          id="generation"
           value={selectedGeneration}
           onChange={(e) => setSelectedGeneration(Number(e.target.value))}
+          className="generation-select"
         >
+          <option value={0}>All Generations</option>
           <option value={1}>Generation 1</option>
           <option value={2}>Generation 2</option>
           <option value={3}>Generation 3</option>
@@ -136,34 +157,30 @@ function PokemonList({ className = "" }) {
           <option value={7}>Generation 7</option>
           <option value={8}>Generation 8</option>
         </select>
-      </div>
 
-      <div className="type-filter">
-        <button type="button" className="btn" onClick={toggleTypeDropdown}>
+        <button
+          className="btn"
+          onClick={toggleTypeDropdown}
+        >
           Filter by Type
         </button>
-        {showTypeDropdown && (
-          <ul className="type-list">
-            {types.map((type) => (
-              <li
-                key={type}
-                className={`dropdown-item ${type} ${
-                  selectedTypes.includes(type) ? "selected" : ""
-                }`}
-                onClick={() => handleTypeToggle(type)}
-              >
-                {type}
-              </li>
-            ))}
-            <li
-              className="dropdown-item clear-selection"
-              onClick={() => setSelectedTypes([])}
-            >
-              Clear Selection
-            </li>
-          </ul>
-        )}
       </div>
+
+      {showTypeDropdown && (
+        <ul className="type-list">
+          {types.map((type) => (
+            <li
+              key={type}
+              className={`dropdown-item ${type} ${
+                selectedTypes.includes(type) ? "selected" : ""
+              }`}
+              onClick={() => handleTypeToggle(type)}
+            >
+              {type}
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         <div className="pokemon-list">

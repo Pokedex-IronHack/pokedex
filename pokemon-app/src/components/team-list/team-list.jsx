@@ -11,11 +11,26 @@ function TeamList({ className = "" }) {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await api.get("/pokemon?limit=151");
-        const basicPokemons = response.data.results;
+        let pokemonData = [];
+        let offset = 0;
+        const limit = 100;
+        let fetching = true;
 
+        // Ajustamos la lógica de la paginación para obtener más de 151 Pokémon
+        while (fetching) {
+          const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
+          pokemonData = pokemonData.concat(response.data.results);
+
+          if (response.data.results.length < limit) {
+            fetching = false;
+          } else {
+            offset += limit;
+          }
+        }
+
+        // Obtener los detalles de los Pokémon recuperados
         const detailedPokemons = await Promise.all(
-          basicPokemons.map(async (pokemon) => {
+          pokemonData.map(async (pokemon) => {
             try {
               const details = await api.get(`/pokemon/${pokemon.name}`);
               return details.data;
@@ -37,7 +52,6 @@ function TeamList({ className = "" }) {
     fetchPokemons();
   }, []);
 
- 
   const yourTeam = pokemons.filter((pokemon) =>
     team.includes(pokemon.id)
   );
