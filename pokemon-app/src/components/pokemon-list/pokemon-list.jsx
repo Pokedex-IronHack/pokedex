@@ -15,6 +15,7 @@ function PokemonList({ className = "" }) {
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedGeneration, setSelectedGeneration] = useState(0); 
+  const [isLoading, setIsLoading] = useState(true);
   const types = [
     "normal", "fire", "water", "electric", "grass",
     "ice", "fighting", "poison", "ground", "flying",
