@@ -3,6 +3,8 @@ import { api } from "../../utils/api";
 import BubbleCard from "../bubble-card/bubble-card";
 import { useTeam } from "../../context/TeamContext";
 
+const LIMIT = 1025;
+
 function TeamList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);
   const [loadingTeam, setLoadingTeam] = useState(true);  
@@ -12,23 +14,10 @@ function TeamList({ className = "" }) {
     const fetchPokemons = async () => {
       try {
         let pokemonData = [];
-        let offset = 0;
-        const limit = 100;
-        let fetching = true;
 
-        // Ajustamos la lógica de la paginación para obtener más de 151 Pokémon
-        while (fetching) {
-          const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
-          pokemonData = pokemonData.concat(response.data.results);
+        const response = await api.get(`/pokemon?limit=${LIMIT}`);
+        pokemonData = pokemonData.concat(response.data.results);
 
-          if (response.data.results.length < limit) {
-            fetching = false;
-          } else {
-            offset += limit;
-          }
-        }
-
-        // Obtener los detalles de los Pokémon recuperados
         const detailedPokemons = await Promise.all(
           pokemonData.map(async (pokemon) => {
             try {

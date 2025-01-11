@@ -97,8 +97,11 @@ function PokemonDetail({ id }) {
         return id.toString().padStart(3, "0");
     }
 
-    function capitalizeName(name) {
-        return name[0].toUpperCase() + name.slice(1).toLowerCase();
+    function formatName(name) {
+        return name
+        .split('-')
+        .map(word => word[0].toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
     }
 
     function getEvolutionChain(evolutionChain) {
@@ -121,18 +124,18 @@ function PokemonDetail({ id }) {
                         onClick={() => prevPokemon && setCurrentId(prevPokemon.id)}
                         disabled={!prevPokemon}
                     >
-                        {prevPokemon ? capitalizeName(prevPokemon.name) : "N/A"}
+                        {prevPokemon ? formatName(prevPokemon.name) : "N/A"}
                     </button>
 
                     {/* Current Pokémon */}
-                    <h1>{capitalizeName(pokemon.name)}</h1>
+                    <h1>{formatName(pokemon.name)}</h1>
 
                     {/* Next Pokémon */}
                     <button
                         onClick={() => nextPokemon && setCurrentId(nextPokemon.id)}
                         disabled={!nextPokemon}
                     >
-                        {nextPokemon ? capitalizeName(nextPokemon.name) : "N/A"}
+                        {nextPokemon ? formatName(nextPokemon.name) : "N/A"}
                     </button>
                 </div>
 

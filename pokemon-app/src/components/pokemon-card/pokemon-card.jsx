@@ -34,8 +34,11 @@ function PokemonCard ({pokemon}) {
         : [...prev, item]);
     }
 
-    function capitalizeName(name) {
-        return name[0].toUpperCase() + name.slice(1).toLowerCase();
+    function formatName(name) {
+        return name
+        .split('-')
+        .map(word => word[0].toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
     }
     
     const isFavorite = favorites.includes(pokemon.id);
@@ -79,7 +82,7 @@ function PokemonCard ({pokemon}) {
                     />
                     <div className="card-body">
                         <h3 className="fs-6 text-secondary"> Nº {formatId(pokemon.id)} </h3>
-                        <h4 className="card-title mb-1 text-break"> {capitalizeName(pokemon.name)} </h4>
+                        <h4 className="card-title mb-1 text-break"> {formatName(pokemon.name)} </h4>
                         <div className="types">
                             {pokemon.types.map((typeInfo, index) => (
                                 <Pills key={index} type={typeInfo.type.name} />

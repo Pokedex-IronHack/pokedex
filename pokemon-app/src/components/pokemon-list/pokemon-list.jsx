@@ -13,7 +13,7 @@ function PokemonList({ className = "" }) {
   const [isAscending, setIsAscending] = useState(true);
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedGeneration, setSelectedGeneration] = useState(0); // 0 representará "All"
+  const [selectedGeneration, setSelectedGeneration] = useState(0); 
   const types = [
     "normal", "fire", "water", "electric", "grass",
     "ice", "fighting", "poison", "ground", "flying",
@@ -27,16 +27,13 @@ function PokemonList({ className = "" }) {
         let pokemonData = [];
 
         if (selectedGeneration === 0) {
-          // Fetch all Pokémon within the predefined limit
-          const response = await api.get(`/pokemon?limit=${LIMIT}`);
+          const response = await api.get(`/pokemon?limit=${LIMIT} `);
           pokemonData = response.data.results;
         } else {
-          // Fetch Pokémon for the selected generation
           const response = await api.get(`/generation/${selectedGeneration}`);
           pokemonData = response.data.pokemon_species;
         }
 
-        // Fetch detailed Pokémon data
         const detailedPokemons = await Promise.all(
           pokemonData.map(async (pokemon) => {
             try {
@@ -49,7 +46,6 @@ function PokemonList({ className = "" }) {
           })
         );
 
-        // Set valid Pokémon data
         setPokemons(detailedPokemons.filter(pokemon => pokemon != null));
         setFilteredPokemons(detailedPokemons.filter(pokemon => pokemon != null));
       } catch (error) {
