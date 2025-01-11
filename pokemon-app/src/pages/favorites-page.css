@@ -18,6 +18,19 @@
     margin-bottom: 50px;
 }
 
+.warning {
+    background-color: #f8d7da; 
+    color: #721c24;
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #f5c6cb; 
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    width: 50%;
+  }
+
 
 .subtitol {
     text-align: center;

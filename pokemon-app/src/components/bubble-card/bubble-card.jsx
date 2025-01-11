@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "./bubble-card.css";
-import { useState } from "react";
 import { useTeam } from "../../context/TeamContext";
 
 const BubbleCard = ({ pokemon, showRemoveIcon = true }) => {
