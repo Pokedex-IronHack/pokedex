@@ -4,7 +4,7 @@ import "../pages/pokedex.css"
 
 const Pokedex = () => {
     return <div className="pokedex">
-      <h1 className="titol">First generation</h1>
+      <h1 className="titol">Pokedex</h1>
       
     <PokemonList/></div>;
     

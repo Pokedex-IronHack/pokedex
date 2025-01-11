@@ -11,11 +11,26 @@ function FavoritesList({ className = "" }) {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await api.get("/pokemon?limit=151");
-        const basicPokemons = response.data.results;
+        let pokemonData = [];
+        let offset = 0;
+        const limit = 100;
+        let fetching = true;
+        
+        // Aquí se agrega un ciclo para recuperar más de 151 Pokémon, ajustando el offset.
+        while (fetching) {
+          const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
+          pokemonData = pokemonData.concat(response.data.results);
 
+          if (response.data.results.length < limit) {
+            fetching = false;
+          } else {
+            offset += limit;
+          }
+        }
+
+        // Obtener los detalles de los Pokémon recuperados
         const detailedPokemons = await Promise.all(
-          basicPokemons.map(async (pokemon) => {
+          pokemonData.map(async (pokemon) => {
             try {
               const details = await api.get(`/pokemon/${pokemon.name}`);
               return details.data;
@@ -56,7 +71,7 @@ function FavoritesList({ className = "" }) {
             <PokemonCard
               key={pokemon.id}
               pokemon={pokemon}
-              showRemoveIcon={true} // acá wey
+              showRemoveIcon={true} // acá gg
             />
           ))
         ) : (
