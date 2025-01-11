@@ -11,7 +11,7 @@ function PokemonList({ className = "" }) {
   const [isAscending, setIsAscending] = useState(true);
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedGeneration, setSelectedGeneration] = useState(0); 
+  const [selectedGeneration, setSelectedGeneration] = useState(0); // 0 representará "All"
   const types = [
     "normal", "fire", "water", "electric", "grass",
     "ice", "fighting", "poison", "ground", "flying",
@@ -25,26 +25,30 @@ function PokemonList({ className = "" }) {
         let pokemonData = [];
         
         if (selectedGeneration === 0) {
+          // Cuando no se selecciona ninguna generación, obtenemos todos los Pokémon
           let offset = 0;
-          const limit = 100;
+          const limit = 1000; // Ajustamos el límite para obtener más Pokémon
+
           let fetching = true;
           
           while (fetching) {
             const response = await api.get(`/pokemon?limit=${limit}&offset=${offset}`);
             pokemonData = pokemonData.concat(response.data.results);
-            
+
             if (response.data.results.length < limit) {
-              fetching = false;
+              fetching = false;  // No hay más Pokémon
             } else {
-              offset += limit;
+              offset += limit;  // Incrementamos el offset para traer más Pokémon
             }
           }
         } else {
+          // Cuando se selecciona una generación específica, obtenemos los Pokémon de esa generación
           const response = await api.get(`/generation/${selectedGeneration}`);
           const basicPokemons = response.data.pokemon_species;
           pokemonData = basicPokemons;
         }
 
+        // Traemos los detalles de cada Pokémon
         const detailedPokemons = await Promise.all(
           pokemonData.map(async (pokemon) => {
             try {
@@ -57,7 +61,7 @@ function PokemonList({ className = "" }) {
           })
         );
 
-        setPokemons(detailedPokemons.filter(Boolean));
+        setPokemons(detailedPokemons.filter(Boolean)); 
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
       }
