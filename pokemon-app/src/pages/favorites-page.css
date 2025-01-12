@@ -1,38 +1,63 @@
-.team,
-.favorites{
-    display: flex; 
+.favorites-container {
+    display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 100%, 
-}
-
-.favorites-page .add{
-    visibility:visible; 
-}
-
-.favs-titol {
+    align-items: center;
+  }
+  
+  .favs-titol {
     text-align: center;
     font-weight: bold;
     margin-top: 50px;
     margin-bottom: 50px;
-}
-
-.warning {
-    background-color: #f8d7da; 
+  }
+  
+  .subtitol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .warning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d7da;
     color: #721c24;
     padding: 15px;
     margin: 20px 0;
-    border: 1px solid #f5c6cb; 
+    border: 1px solid #f5c6cb;
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 50%;
+    margin: 0 auto;
   }
-
-
-.subtitol {
-    text-align: center;
+  
+  .favorites-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
+   
+  }
+  
+  /* Asegura que las cartas de Pokémon en favoritos se distribuyan y se centren */
+  .d-flex {
+    display: flex;
+    flex-wrap: wrap; /* Para que las cartas puedan envolver */
+    justify-content: center; /* Para que las cartas se centren horizontalmente */
+    gap: 20px; /* Espaciado entre las cartas */
+  }
+  
+  .favorites-container .pokemon-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px; /* Ajusta el tamaño máximo de las cartas */
+  
+  }
+  
