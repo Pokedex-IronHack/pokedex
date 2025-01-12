@@ -47,10 +47,12 @@ function TeamList({ className = ""}) {
 
   return (
     <div>
-      <h1 className="favs-titol"> Your team </h1>
+      <h1 className="favs-titol">Your team</h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         {loadingTeam ? (  
-          <div>Loading your team...</div>
+          <div className="loading-container-team">
+            <img src="../../../public/loading-team.gif" alt="Loading..." className="loading-favs" />
+          </div>
         ) : yourTeam.length > 0 ? (
           yourTeam.map((pokemon) => (
             <BubbleCard key={pokemon.id} pokemon={pokemon} />
@@ -61,6 +63,7 @@ function TeamList({ className = ""}) {
       </div>
     </div>
   );
+  
 }
 
 export default TeamList;

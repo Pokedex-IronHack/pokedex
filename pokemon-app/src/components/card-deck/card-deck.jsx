@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Slider from "react-slick";
 
 function DeckCard({ pokedexId }) {
   const [image, setImage] = useState(null);
@@ -50,7 +49,7 @@ function DeckCard({ pokedexId }) {
       ) : image ? (
         <img src={image} alt={`Card with Pokédex ID: ${pokedexId}`} />
       ) : (
-        <p>Loading...</p>
+        <img className="loading" src="../../../public/loadingball.gif" alt="Loading..." /> 
       )}
     </div>
   );

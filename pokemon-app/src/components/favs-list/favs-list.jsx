@@ -51,7 +51,7 @@ function FavoritesList({ className = "", showWarning, setShowWarning }) {
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         {loadingFavorites ? (
           <div className="loading-container-fav">
-            <img src="/loading.gif" alt="Loading..." className="loading-gif" />
+            <img src="../../../public/loading-favs.gif" alt="Loading..." className="loading-favs" />
           </div>
         ) : favoritePokemons.length > 0 ? (
           favoritePokemons.map((pokemon) => (
