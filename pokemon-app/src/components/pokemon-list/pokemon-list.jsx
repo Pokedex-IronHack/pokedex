@@ -3,7 +3,7 @@ import { api } from "../../utils/api";
 import PokemonCard from "../pokemon-card/pokemon-card";
 import SearchBar from "../search-bar/search-bar";
 import "../pokemon-list/pokemon-list.css";
-import PokeballGif from "../../../public/loading.gif";
+import PokeballGif from "../../../public/loading.gif"; 
 
 const LIMIT = 1025;
 
@@ -114,14 +114,18 @@ function PokemonList({ className = "" }) {
 
   return (
     <div>
-      <div className="search-bar-container">
-        <SearchBar onSearch={handleSearch} className="search-bar" />
+      <div className="search-bar">
+        <SearchBar onSearch={handleSearch} className="search-bar-container" />
       </div>
       <div className="horizontal-filters">
+        
+        {/* Ascending/Descending Button */}
         <button type="button" className="btn ascending" onClick={toggleOrder}>
           {isAscending ? "Ascending" : "Descending"}
         </button>
 
+
+        {/* Generation Selector */}
         <select
           value={selectedGeneration}
           onChange={(e) => setSelectedGeneration(Number(e.target.value))}
@@ -139,30 +143,37 @@ function PokemonList({ className = "" }) {
           <option value={9}>Generation 9</option>
         </select>
 
-        <button className="btn filter" onClick={toggleTypeDropdown}>
+        <button
+          className="btn filter"
+          onClick={toggleTypeDropdown}
+        >
           Filter by Type
         </button>
       </div>
 
       {showTypeDropdown && (
-        <ul className="type-list">
-          {types.map((type) => (
-            <li
-              key={type}
-              className={`dropdown-item ${type} ${
-                selectedTypes.includes(type) ? "selected" : ""
-              }`}
-              onClick={() => handleTypeToggle(type)}
-            >
-              <img
-                src={`../../../public/${type}.svg`}
-                alt={`${type} icon`}
-                className={`type-icon ${type}`}
-              />
-              <span>{type}</span>
-            </li>
-          ))}
-        </ul>
+
+      <ul className="type-list">
+      {types.map((type) => (
+        <li
+          key={type}
+          className={`dropdown-item ${type} ${
+            selectedTypes.includes(type) ? "selected" : ""
+          }`}
+          onClick={() => handleTypeToggle(type)}
+        >
+          {/* Icono SVG */}
+          <img
+            src={`../../../public/${type}.svg`}
+            alt={`${type} icon`}
+            className={`type-icon ${type}`} 
+          />
+        
+          <span>{type}</span>
+        </li>
+      ))}
+      </ul>
+
       )}
 
       {isLoading ? (
