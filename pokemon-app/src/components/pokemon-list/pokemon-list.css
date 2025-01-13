@@ -248,3 +248,36 @@
   margin-top: 0px; 
   margin-bottom: 0px;
 }
+
+.type-icon {
+  width: 25px; 
+  height: 25px;
+  margin-right: 8px;
+  pointer-events: none; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 4px; 
+}
+
+
+/* Colores específicos por tipo para .type-icon */
+.type-icon.bug { background-color: #A8B820; }
+.type-icon.dark { background-color: #705848; }
+.type-icon.dragon { background-color: #6F35FC; }
+.type-icon.electric { background-color: #F7D02C; }
+.type-icon.fairy { background-color: #EE99AC; }
+.type-icon.fighting { background-color: #C22E28; }
+.type-icon.fire { background-color: #F08030; }
+.type-icon.flying { background-color: #A98FF3; }
+.type-icon.ghost { background-color: #735797; }
+.type-icon.grass { background-color: #7AC74C; }
+.type-icon.ground { background-color: #E2BF65; }
+.type-icon.ice { background-color: #96D9D6; }
+.type-icon.normal { background-color: #A8A878; }
+.type-icon.poison { background-color: #A33EA1; }
+.type-icon.psychic { background-color: #F85888; }
+.type-icon.rock { background-color: #B69E31; }
+.type-icon.steel { background-color: #B7B7CE; }
+.type-icon.water { background-color: #6390F0; }
