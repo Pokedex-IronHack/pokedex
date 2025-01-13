@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     margin: 20px;
-    margin-bottom: 50px;
+    
   }
   
   .inputWrapper {
@@ -11,7 +11,8 @@
   }
   
   .searchInput {
-    padding: 10px 40px 10px 10px;  
+    padding: 10px 30px 10px 10px;
+    margin-top: 30px;
     border-radius: 20px;
     width: 630px;
     font-size: 16px;
@@ -39,7 +40,7 @@
   .searchIcon {
     position: absolute;
     right: 10px; 
-    top: 50%;
+    top: 70%;
     transform: translateY(-50%);  
     width: 31px; 
     height: 34px;

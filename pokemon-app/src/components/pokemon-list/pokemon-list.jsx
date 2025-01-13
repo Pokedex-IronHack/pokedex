@@ -118,19 +118,12 @@ function PokemonList({ className = "" }) {
         <SearchBar onSearch={handleSearch} className="search-bar-container" />
       </div>
       <div className="horizontal-filters">
+        
         {/* Ascending/Descending Button */}
-        <button
-          type="button"
-          className="btn ascending"
-          onClick={toggleOrder}
-        >
+        <button type="button" className="btn ascending" onClick={toggleOrder}>
           {isAscending ? "Ascending" : "Descending"}
-          <div className="icon">
-            <ion-icon
-              name={isAscending ? "chevron-up-outline" : "chevron-down-outline"}
-            ></ion-icon>
-          </div>
         </button>
+
 
         {/* Generation Selector */}
         <select
@@ -159,19 +152,28 @@ function PokemonList({ className = "" }) {
       </div>
 
       {showTypeDropdown && (
-        <ul className="type-list">
-          {types.map((type) => (
-            <li
-              key={type}
-              className={`dropdown-item ${type} ${
-                selectedTypes.includes(type) ? "selected" : ""
-              }`}
-              onClick={() => handleTypeToggle(type)}
-            >
-              {type}
-            </li>
-          ))}
-        </ul>
+
+      <ul className="type-list">
+      {types.map((type) => (
+        <li
+          key={type}
+          className={`dropdown-item ${type} ${
+            selectedTypes.includes(type) ? "selected" : ""
+          }`}
+          onClick={() => handleTypeToggle(type)}
+        >
+          {/* Icono SVG */}
+          <img
+            src={`../../../public/${type}.svg`}
+            alt={`${type} icon`}
+            className={`type-icon ${type}`} 
+          />
+        
+          <span>{type}</span>
+        </li>
+      ))}
+      </ul>
+
       )}
 
       {isLoading ? (
