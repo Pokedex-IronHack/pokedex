@@ -32,7 +32,7 @@ const Home = () => {
           })
         );
 
-        setPokemons(detailedPokemons.filter( pokemon => pokemon != null));
+        setPokemons(detailedPokemons.filter(pokemon => pokemon != null));
         setFilteredPokemons(detailedPokemons.filter(pokemon => pokemon != null));
         setLoading(false);
       } catch (error) {
@@ -49,6 +49,7 @@ const Home = () => {
       const filtered = pokemons.filter((pokemon) =>
         pokemon.name.toLowerCase().startsWith(query.toLowerCase())
       );
+      // Asegúrate de limitar los resultados a un máximo de 8.
       setFilteredPokemons(filtered.slice(0, 8));
       setHasSearchQuery(query.trim() !== "");
     } else {
@@ -56,7 +57,6 @@ const Home = () => {
       setHasSearchQuery(false);
     }
   };
-
 
   return (
     <div className="container home-container">
