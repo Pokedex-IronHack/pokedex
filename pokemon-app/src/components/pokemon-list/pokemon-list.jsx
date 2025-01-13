@@ -114,8 +114,9 @@ function PokemonList({ className = "" }) {
 
   return (
     <div>
-      <SearchBar onSearch={handleSearch} className="search-bar-container" />
-
+      <div className="search-bar">
+        <SearchBar onSearch={handleSearch} className="search-bar-container" />
+      </div>
       <div className="horizontal-filters">
         {/* Ascending/Descending Button */}
         <button

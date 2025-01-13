@@ -6,7 +6,7 @@ import { useState } from "react";
 const Pokedex = () => {
   const [showWarning, setShowWarning] = useState(false);
     return <div className="pokedex">
-      <h1 className="titol">Pokedex</h1>
+      <h1 className="titol"></h1>
       
     <PokemonList showWarning={showWarning} setShowWarning={setShowWarning}/></div>;
     

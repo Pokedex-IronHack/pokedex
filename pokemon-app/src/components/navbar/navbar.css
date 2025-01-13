@@ -9,7 +9,7 @@
     padding: 10px 40px; /* Relleno interior */
     box-shadow: 3px 3px 9px rgba(30, 10, 60, 0.06), 6px 6px 14px rgba(30, 10, 60, 0.08); /* Sombra sutil */
     width: 80%; /* Ancho responsivo */
-    margin: 30px auto; /* Espaciado arriba y abajo */
+    margin: 30px auto 0px auto; /* Espaciado arriba y abajo */
     font-family: 'Helvetica', sans-serif; /* Tipografía limpia */
 }
 

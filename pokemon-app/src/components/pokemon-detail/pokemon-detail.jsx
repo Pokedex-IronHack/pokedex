@@ -15,17 +15,14 @@ function PokemonDetail({ id }) {
     const [evolutionData, setEvolutionData] = useState([]);
 
     useEffect(() => {
-        // Fetch current Pokémon data
         const fetchPokemonData = async () => {
             try {
                 setLoading(true);
 
-                // Fetch current Pokémon details
                 const response = await api.get(`/pokemon/${currentId}`);
                 const pokemonData = response.data;
                 setPokemon(pokemonData);
 
-                // Fetch weaknesses
                 const allWeaknesses = [];
                 for (let type of pokemonData.types) {
                     const typeResponse = await api.get(`/type/${type.type.name}`);
@@ -34,14 +31,13 @@ function PokemonDetail({ id }) {
                 }
                 setWeaknesses([...new Set(allWeaknesses)]);
 
-                // Fetch evolution chain
+                
                 const speciesData = await api.get(pokemonData.species.url);
                 const evolutionChainUrl = speciesData.data.evolution_chain.url;
                 const evolutionChainData = await api.get(evolutionChainUrl);
                 const evolutionChain = getEvolutionChain(evolutionChainData.data);
                 setEvolutionChain(evolutionChain);
 
-                // Fetch evolution Pokémon details
                 const evolutionPromises = evolutionChain.map((name) =>
                     api.get(`/pokemon/${name.toLowerCase()}`).then((res) => res.data)
                 );
