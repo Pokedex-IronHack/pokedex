@@ -13,12 +13,10 @@ body {
 
 
 .deck {
-  
   padding: 20px;
   background-size: cover;
-  overflow: hidden;
-  
-  
+  padding-bottom: 50px;
+  margin-bottom: 50px;
   
 }
 

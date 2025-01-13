@@ -2,11 +2,13 @@
     position: fixed;
     top: 0;
     left: 0;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     background-color: transparent;
+    border-radius: 5px;
   }
 
   .modal-content img.type-icon {
@@ -14,15 +16,29 @@
     width: 25px;
     margin: 4px;
   }
+
+  .modal-content {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    max-height: calc(100vh - 50px);
+  }
+  
+  .stats-card {
+    padding: 0;
+    margin: 0;
+    
+  }
   
   .modal-content {
     background-color: #fff;
-    padding: 20px;
+    box-sizing: border-box;
     border-radius: 8px;
     max-width: 500px;
     width: 90%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
+    max-height: 90vh;
   }
   
   .close-button {
@@ -64,4 +80,64 @@
 
   h3{
     font-size: 20px;
+  }
+
+  .abilities-section ul{
+    font-size: 14px;
+  }
+
+  .abilities-section p{
+    display: -webkit-box; /* Use a flexbox-based layout for text */
+    -webkit-box-orient: vertical; /* Specify vertical text flow */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
+    -webkit-line-clamp: 3; /* Limit text to 3 lines */
+    line-clamp: 3; /* For modern browsers that support it */
+    max-height: 4.5em; /* Ensure it aligns with 3 lines of text height */
+  }
+  
+  .card-name{
+    background-color: #6390F0;
+    color: white; 
+    display: flex;
+    align-items: center;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 10px; 
+  }
+
+  .resist-title{
+    background-color:  #ffcb05;
+    color: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; 
+  }
+
+  .attack-title{
+    background-color: lightcoral;
+    color: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; 
+  }
+
+  .weak-title{
+    background-color: lightblue;
+    color: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; 
+  }
+
+  .abs-title{
+    background-color: lightseagreen;
+    color: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; 
   }
