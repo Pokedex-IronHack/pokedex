@@ -1,3 +1,8 @@
+body .favorites-page{
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .favorites-container {
     display: flex;
     flex-direction: column;

@@ -5,6 +5,9 @@ body {
   text-align: center;
   background-image: url('../../public/bg-deck.png');
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   
 }
 
