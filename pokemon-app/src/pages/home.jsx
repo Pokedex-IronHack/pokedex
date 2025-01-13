@@ -10,7 +10,6 @@ const Home = () => {
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasSearchQuery, setHasSearchQuery] = useState(false);
-
   
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -19,18 +18,13 @@ const Home = () => {
         const data = await response.json();
         const basicPokemons = data.results;
 
-        const minimalPokemons = await Promise.all(
+        const detailedPokemons = await Promise.all(
           basicPokemons.map(async (pokemon) => {
             try {
               const detailResponse = await fetch(
                 `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
               );
-              const detailData = await detailResponse.json();
-              return {
-                id: detailData.id,
-                name: detailData.name,
-                sprite: detailData.sprites.other["official-artwork"].front_default,
-              };
+              return await detailResponse.json();
             } catch (error) {
               console.error(`Error fetching details for ${pokemon.name}:`, error);
               return null;
@@ -38,8 +32,8 @@ const Home = () => {
           })
         );
 
-        setPokemons(minimalPokemons.filter( pokemon => pokemon != null));
-        setFilteredPokemons(minimalPokemons.filter(pokemon => pokemon != null));
+        setPokemons(detailedPokemons.filter( pokemon => pokemon != null));
+        setFilteredPokemons(detailedPokemons.filter(pokemon => pokemon != null));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching Pokémon list:", error);
@@ -78,7 +72,7 @@ const Home = () => {
         <div className="pokemon-list">
           {hasSearchQuery &&
             filteredPokemons.map((pokemon) => (
-              <BubbleCard key={pokemon.id} pokemon={pokemon} showRemoveIcon={false}/>
+              <BubbleCard key={pokemon.id} pokemon={pokemon} showRemoveIcon={false} />
             ))}
         </div>
       </div>
