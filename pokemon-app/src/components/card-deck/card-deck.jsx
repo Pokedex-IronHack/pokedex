@@ -71,23 +71,21 @@ function DeckCard({ pokedexId }) {
             src={cardData.imageURL}
             alt={`${cardData.name} card`}
             className="card-image"
-            onClick={() => setShowDetails(true)}
+            onClick={() => setShowDetails(true)} // Open modal on click
           />
   
           {/* Pop-Up Modal */}
           {showDetails && (
-            <div className="modal-overlay" onClick={() => setShowDetails(false)}>
+            <div
+              className="modal-overlay"
+              onMouseLeave={() => setShowDetails(false)} // Close modal on mouse leave
+            >
               <div
                 className="modal-content"
-                onClick={(e) => e.stopPropagation()} 
+                onClick={(e) => e.stopPropagation()} // Prevent modal closing when clicked inside
               >
-                <button className="close-button" onClick={() => setShowDetails(false)}>
-                  ✖
-                </button>
-  
                 {/* Card Name */}
                 <h2 className="card-name"><strong>{cardData.name}</strong></h2>
-
   
                 {/* HP and Types */}
                 <p className="card-hp">
@@ -105,11 +103,11 @@ function DeckCard({ pokedexId }) {
                 {/* Abilities */}
                 {cardData.abilities.length > 0 && (
                   <div className="abilities-section">
-                    <h3>Abilities</h3>
+                    <h3 className="abs-title">Abilities</h3>
                     <ul>
                       {cardData.abilities.map((ability, index) => (
                         <li key={index}>
-                          <strong>{ability.name}</strong>: {ability.text}
+                          <strong>{ability.name}</strong>: <p>{ability.text}</p>
                         </li>
                       ))}
                     </ul>
@@ -119,7 +117,7 @@ function DeckCard({ pokedexId }) {
                 {/* Attacks */}
                 {cardData.attacks.length > 0 && (
                   <div className="attacks-section">
-                    <h3>Attacks</h3>
+                    <h3 className="attack-title">Attacks</h3>
                     <ul>
                       {cardData.attacks.map((attack, index) => (
                         <li key={index}>
@@ -143,7 +141,7 @@ function DeckCard({ pokedexId }) {
                 {/* Weaknesses */}
                 {cardData.weaknesses.length > 0 && (
                   <div className="weaknesses-section">
-                    <h3>Weaknesses</h3>
+                    <h3 className="weak-title">Weaknesses</h3>
                     <ul>
                       {cardData.weaknesses.map((weakness, index) => (
                         <li key={index}>
@@ -162,7 +160,7 @@ function DeckCard({ pokedexId }) {
                 {/* Resistances */}
                 {cardData.resistances.length > 0 && (
                   <div className="resistances-section">
-                    <h3>Resistances</h3>
+                    <h3 className="resist-title">Resistances</h3>
                     <ul>
                       {cardData.resistances.map((resistance, index) => (
                         <li key={index}>
@@ -205,6 +203,6 @@ function DeckCard({ pokedexId }) {
       )}
     </div>
   );
-}  
+}   
 
 export default DeckCard;
