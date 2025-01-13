@@ -1,38 +1,68 @@
+body {
+ 
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-image: url('../../public/bg-deck.png');
+  background-size: cover;
+  
+}
+
+
 .deck {
-    text-align: center;
-    padding: 20px;
-  }
   
-  .title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
+  padding: 20px;
+  background-size: cover;
+  overflow: hidden;
   
-  .carousel {
-    width: 800px;
-    margin: 0 auto;
-  }
   
-  .slick-slide {
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
-    opacity: 0.5;
-  }
   
-  .slick-center {
-    transform: scale(1);
-    opacity: 1;
-  }
-  
-  .carousel-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .carousel-card img {
-    width: 100%;
-    max-width: 250px; /* Adjust as needed */
-    border-radius: 10px;
+}
+
+.titol {
+  font-size: 2rem;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.deck-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px;
+  padding: 20px 0;
+}
+
+.deck-card {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%);
+  opacity: 0.8;
+}
+
+.deck-card:hover {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.deck-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+
+}
+
+
+  .loading {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: contain !important;
   }
   

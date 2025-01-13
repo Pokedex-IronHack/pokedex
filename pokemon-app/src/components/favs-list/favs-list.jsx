@@ -5,17 +5,16 @@ import { useFavorites } from "../../context/FavoritesContext";
 
 const LIMIT = 1025;
 
-function FavoritesList({ className = "", showWarning, setShowWarning}) {
+function FavoritesList({ className = "", showWarning, setShowWarning }) {
   const [pokemons, setPokemons] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
   const { favorites } = useFavorites();
-
 
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
         let pokemonData = [];
-        
+
         const response = await api.get(`/pokemon?limit=${LIMIT}`);
         pokemonData = pokemonData.concat(response.data.results);
 
@@ -42,10 +41,6 @@ function FavoritesList({ className = "", showWarning, setShowWarning}) {
     fetchPokemons();
   }, []);
 
-  if (pokemons.length === 0) {
-    return <div>Loading your favorite Pokémon...</div>;
-  }
-
   const favoritePokemons = pokemons.filter((pokemon) =>
     favorites.includes(pokemon.id)
   );
@@ -56,7 +51,7 @@ function FavoritesList({ className = "", showWarning, setShowWarning}) {
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
         {loadingFavorites ? (
           <div className="loading-container-fav">
-            <img src="https://i.giphy.com/nMy8HTFQRWpudNwbxQ.webp" alt="Loading..." className="loading-gif" />
+            <img src="../../../public/loading-favs.gif" alt="Loading..." className="loading-favs" />
           </div>
         ) : favoritePokemons.length > 0 ? (
           favoritePokemons.map((pokemon) => (

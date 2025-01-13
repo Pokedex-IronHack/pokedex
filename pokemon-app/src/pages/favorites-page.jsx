@@ -19,6 +19,8 @@ const FavoritesPage = () => {
     <div className="team">
       <TeamList />
     </div>
+
+    
     <FavoritesList 
         showWarning={showWarning} 
         setShowWarning={setShowWarning}

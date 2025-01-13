@@ -1,9 +1,22 @@
+body {
+ 
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url('../../public/bg-deck.png');
+    background-size: cover;
+    
+  }
+  
+
+
 .pokedex .add{
     visibility: hidden;
 }
 
 .pokedex {
    margin-top: 50px;
+
   
 }
 
