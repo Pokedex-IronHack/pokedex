@@ -27,7 +27,7 @@ const FavoritesPage = () => {
       />
       {showWarning && (
         <div className="warning">
-         <span className="icon">⚠️</span> {/* Optional: icon for the warning */}
+         <span className="icon">⚠️</span> 
            You can only add up to 6 Pokémon to your team.
         </div>
       )}

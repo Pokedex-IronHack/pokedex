@@ -29,9 +29,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end; /* Esto mueve el contenido de .container2 a la derecha */
+    align-items: flex-end; 
     width: 50%;
-    margin-top: 150px; /* Baja el contenedor .container2 */
+    margin-top: 150px;
 }
 
 .container3 {

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import "../card-deck/card-deck.css"
+import "../card-deck/card-deck.css";
 
 function DeckCard({ pokedexId }) {
   const [cardData, setCardData] = useState(null);
   const [error, setError] = useState(false);
-  const [showDetails, setShowDetails] = useState(false); 
+  const [showDetails, setShowDetails] = useState(false);
 
   const typeIcons = {
     Fire: "/public/types/fire_black.png",
@@ -47,7 +47,6 @@ function DeckCard({ pokedexId }) {
           imageURL: card.images.small,
         });
       } else {
-        console.log("Card not found");
         setError(true);
       }
     } catch (error) {
@@ -66,28 +65,18 @@ function DeckCard({ pokedexId }) {
         <p className="error-message">Card not found. Please check the National Pokédex ID.</p>
       ) : cardData ? (
         <div className="card-container">
-          {/* Card Image */}
           <img
             src={cardData.imageURL}
             alt={`${cardData.name} card`}
             className="card-image"
-            onClick={() => setShowDetails(true)} // Open modal on click
+            onClick={() => setShowDetails(true)}
           />
-  
-          {/* Pop-Up Modal */}
+
           {showDetails && (
-            <div
-              className="modal-overlay"
-              onMouseLeave={() => setShowDetails(false)} // Close modal on mouse leave
-            >
-              <div
-                className="modal-content"
-                onClick={(e) => e.stopPropagation()} // Prevent modal closing when clicked inside
-              >
-                {/* Card Name */}
+            <div className="modal-overlay" onMouseLeave={() => setShowDetails(false)}>
+              <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <h2 className="card-name"><strong>{cardData.name}</strong></h2>
-  
-                {/* HP and Types */}
+
                 <p className="card-hp">
                   HP {cardData.hp}
                   {cardData.types.map((type) => (
@@ -99,8 +88,7 @@ function DeckCard({ pokedexId }) {
                     />
                   ))}
                 </p>
-  
-                {/* Abilities */}
+
                 {cardData.abilities.length > 0 && (
                   <div className="abilities-section">
                     <h3 className="abs-title">Abilities</h3>
@@ -113,15 +101,15 @@ function DeckCard({ pokedexId }) {
                     </ul>
                   </div>
                 )}
-  
-                {/* Attacks */}
+
                 {cardData.attacks.length > 0 && (
                   <div className="attacks-section">
                     <h3 className="attack-title">Attacks</h3>
                     <ul>
                       {cardData.attacks.map((attack, index) => (
                         <li key={index}>
-                          <strong>{attack.name}</strong>: {attack.damage || "No damage"}
+                          <strong>{attack.name}</strong>
+                          <span>{attack.damage || "No damage"}</span>
                           <div className="energy-cost">
                             {attack.cost.map((energyType, i) => (
                               <img
@@ -137,8 +125,7 @@ function DeckCard({ pokedexId }) {
                     </ul>
                   </div>
                 )}
-  
-                {/* Weaknesses */}
+
                 {cardData.weaknesses.length > 0 && (
                   <div className="weaknesses-section">
                     <h3 className="weak-title">Weaknesses</h3>
@@ -150,59 +137,21 @@ function DeckCard({ pokedexId }) {
                             alt={`${weakness.type} icon`}
                             className="type-icon"
                           />
-                          {" "}{weakness.value}
+                          <span>{weakness.value}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                )}
-  
-                {/* Resistances */}
-                {cardData.resistances.length > 0 && (
-                  <div className="resistances-section">
-                    <h3 className="resist-title">Resistances</h3>
-                    <ul>
-                      {cardData.resistances.map((resistance, index) => (
-                        <li key={index}>
-                          <img
-                            src={typeIcons[resistance.type] || "/icons/default.png"}
-                            alt={`${resistance.type} icon`}
-                            className="type-icon"
-                          />
-                          {" "}{resistance.value}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-  
-                {/* Retreat Cost */}
-                {cardData.retreatCost > 0 && (
-                  <p className="retreat-cost">
-                    <strong>Retreat Cost:</strong>
-                    {Array(cardData.retreatCost).fill(null).map((_, index) => (
-                      <img
-                        key={index}
-                        src={typeIcons["Colorless"] || "/icons/colorless.png"}
-                        alt="Colorless icon"
-                        className="type-icon"
-                      />
-                    ))}
-                  </p>
                 )}
               </div>
             </div>
           )}
         </div>
       ) : (
-        <img
-          className="loading"
-          src="/loadingball.gif"
-          alt="Loading..."
-        />
+        <img className="loading" src="/loadingball.gif" alt="Loading..." />
       )}
     </div>
   );
-}   
+}
 
 export default DeckCard;

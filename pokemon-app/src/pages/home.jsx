@@ -49,7 +49,7 @@ const Home = () => {
       const filtered = pokemons.filter((pokemon) =>
         pokemon.name.toLowerCase().startsWith(query.toLowerCase())
       );
-      // Asegúrate de limitar los resultados a un máximo de 8.
+      // limite que se muestra
       setFilteredPokemons(filtered.slice(0, 8));
       setHasSearchQuery(query.trim() !== "");
     } else {

@@ -1,143 +1,149 @@
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.card-hp p {
+  display: inline; /* Aseguramos que el texto HP y el icono estén en la misma línea */
+}
+
+.type-icon {
+  margin-bottom: 5px;
+  display: inline-block; /* Los iconos de tipo estarán en línea */
+}
+
+.attacks-section ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none
+}
+
+.attacks-section li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.energy-cost {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.energy-cost img {
+  height: 20px;
+  width: 20px;
+}
+
+.card-name {
+  background-color: #6390f0;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 10px;
+}
+
+.card-image {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card-image:hover {
+  transform: scale(1.05);
+}
+
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    background-color: transparent;
-    border-radius: 5px;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  background-color: transparent;
+  border-radius: 5px;
+}
 
-  .modal-content img.type-icon {
-    height: 25px;
-    width: 25px;
-    margin: 4px;
-  }
+.modal-content img.type-icon {
+  height: 25px;
+  width: 25px;
+  margin: 4px;
+}
 
-  .modal-content {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    max-height: calc(100vh - 50px);
-  }
-  
-  .stats-card {
-    padding: 0;
-    margin: 0;
-    
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    box-sizing: border-box;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-    max-height: 90vh;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    background: none;
-    border: none;
-    font-size: 0.8rem; 
-    width: 10px; 
-    height: 20px; 
-    cursor: pointer;
-    line-height: 1;
-    padding: 0;
-  }
-  
-  
-  .card-image {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .card-image:hover {
-    transform: scale(1.05);
-  }
+.abilities-section p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  max-height: 4.5em;
+}
 
-  ul {
-    list-style-type: none; 
-    padding: 0;
-    margin: 0; 
-  }
-  
-  li {
-    list-style-type: none;
-  }
+h3 {
+  font-size: 20px;
+}
 
-  h3{
-    font-size: 20px;
-  }
+.abilities-section ul {
+  font-size: 14px;
+}
 
-  .abilities-section ul{
-    font-size: 14px;
-  }
+.abilities-section p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  max-height: 4.5em;
+}
 
-  .abilities-section p{
-    display: -webkit-box; /* Use a flexbox-based layout for text */
-    -webkit-box-orient: vertical; /* Specify vertical text flow */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow */
-    -webkit-line-clamp: 3; /* Limit text to 3 lines */
-    line-clamp: 3; /* For modern browsers that support it */
-    max-height: 4.5em; /* Ensure it aligns with 3 lines of text height */
-  }
-  
-  .card-name{
-    background-color: #6390F0;
-    color: white; 
-    display: flex;
-    align-items: center;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    padding: 10px; 
-  }
+.card-hp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .resist-title{
-    background-color:  #ffcb05;
-    color: white; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px; 
-  }
+.resist-title,
+.attack-title,
+.weak-title,
+.abs-title {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
 
-  .attack-title{
-    background-color: lightcoral;
-    color: white; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px; 
-  }
+.resist-title {
+  background-color: #ffcb05;
+}
 
-  .weak-title{
-    background-color: lightblue;
-    color: white; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px; 
-  }
+.attack-title {
+  background-color: lightcoral;
+}
 
-  .abs-title{
-    background-color: lightseagreen;
-    color: white; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px; 
-  }
+.weak-title {
+  background-color: lightblue;
+}
+
+.abs-title {
+  background-color: lightseagreen;
+}
+
+.weaknesses-section ul {
+  list-style-type: none;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
