@@ -22,7 +22,7 @@ function DeckCard({ pokedexId }) {
   };
 
   const fetchCardData = async (id) => {
-    const apiKey = "b7604c4a-22d0-4720-b624-c20d43cc8e40";
+    const apiKey = import.meta.env.VITE_API_KEY;
     const url = `https://api.pokemontcg.io/v2/cards?q=nationalPokedexNumbers:${id}`;
 
     try {

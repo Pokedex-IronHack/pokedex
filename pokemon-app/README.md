@@ -1,8 +1,14 @@
-# React + Vite
+const readMe = `
+  # Welcome to Your Pokédex!
+  
+  Discover the fascinating world of Pokémon, spanning all generations from the 1st to the 9th!
+  
+  ## Features:
+  - **Explore All Generations**: Access detailed information about every Pokémon, from classic favorites to the latest additions.
+  - **Build Your Team**: Save your favorite Pokémon and craft your dream team effortlessly.
+  - **Card Game Stats**: Dive into the stats and abilities that bring each Pokémon card to life in the Pokémon Trading Card Game.
+  
+  Get ready to explore, strategize, and immerse yourself in the ultimate Pokémon experience!
+`;
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+console.log(readMe);
