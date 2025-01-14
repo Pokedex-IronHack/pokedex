@@ -3,57 +3,68 @@ import { api } from "../../utils/api";
 import PokemonCard from "../pokemon-card/pokemon-card";
 import { useFavorites } from "../../context/FavoritesContext";
 
-const LIMIT = 1025;
-
 function FavoritesList({ className = "", showWarning, setShowWarning }) {
-  const [pokemons, setPokemons] = useState([]);
-  const [loadingFavorites, setLoadingFavorites] = useState(true);
+  const [favoritePokemons, setFavoritePokemons] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { favorites } = useFavorites();
 
   useEffect(() => {
-    const fetchPokemons = async () => {
+    const fetchFavoritePokemons = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        let pokemonData = [];
-
-        const response = await api.get(`/pokemon?limit=${LIMIT}`);
-        pokemonData = pokemonData.concat(response.data.results);
-
-        const detailedPokemons = await Promise.all(
-          pokemonData.map(async (pokemon) => {
+        const detailedFavorites = await Promise.all(
+          favorites.map(async (id) => {
             try {
-              const details = await api.get(`/pokemon/${pokemon.name}`);
-              return details.data;
+              const response = await api.get(`/pokemon/${id}`);
+              return response.data;
             } catch (error) {
-              console.error(`Error fetching details for ${pokemon.name}:`, error);
+              console.error(`Error fetching details for Pokemon ID ${id}:`, error);
               return null;
             }
           })
         );
 
-        setPokemons(detailedPokemons.filter((pokemon) => pokemon != null));
-        setLoadingFavorites(false);
+        // Filtra los favoritos válidos (que no sean null)
+        setFavoritePokemons(detailedFavorites.filter((pokemon) => pokemon !== null));
       } catch (error) {
-        console.error("Error fetching Pokémon list:", error);
-        setLoadingFavorites(false);
+        setError("Error loading favorite Pokémon.");
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchPokemons();
-  }, []);
+    if (favorites.length > 0) {
+      fetchFavoritePokemons();
+    } else {
+      setFavoritePokemons([]);
+      setLoading(false);
+    }
+  }, [favorites]);
 
-  const favoritePokemons = pokemons.filter((pokemon) =>
-    favorites.includes(pokemon.id)
-  );
+  if (loading) {
+    return (
+      <div className="loading-container-fav">
+        <img
+          src="../../../public/loading-favs.gif"
+          alt="Loading..."
+          className="loading-favs"
+        />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="error-message">{error}</p>;
+  }
 
   return (
     <div className="favorites-container">
       <h1 className="favs-titol">Your favorites</h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
-        {loadingFavorites ? (
-          <div className="loading-container-fav">
-            <img src="../../../public/loading-favs.gif" alt="Loading..." className="loading-favs" />
-          </div>
-        ) : favoritePokemons.length > 0 ? (
+        {favoritePokemons.length > 0 ? (
           favoritePokemons.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}

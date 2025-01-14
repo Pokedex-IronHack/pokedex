@@ -3,58 +3,70 @@ import { api } from "../../utils/api";
 import BubbleCard from "../bubble-card/bubble-card";
 import { useTeam } from "../../context/TeamContext";
 
-const LIMIT = 1025;
-
-function TeamList({ className = ""}) {
-  const [pokemons, setPokemons] = useState([]);
-  const [loadingTeam, setLoadingTeam] = useState(true);   
-  const { team } = useTeam();
+function TeamList({ className = "" }) {
+  const [teamPokemons, setTeamPokemons] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { team } = useTeam(); // Lista de IDs de Pokémon en el equipo
 
   useEffect(() => {
-    const fetchPokemons = async () => {
+    const fetchTeamPokemons = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        let pokemonData = [];
-
-        const response = await api.get(`/pokemon?limit=${LIMIT}`);
-        pokemonData = pokemonData.concat(response.data.results);
-
-        const detailedPokemons = await Promise.all(
-          pokemonData.map(async (pokemon) => {
+        // Fetch detallado solo de los Pokémon del equipo
+        const detailedTeam = await Promise.all(
+          team.map(async (id) => {
             try {
-              const details = await api.get(`/pokemon/${pokemon.name}`);
-              return details.data;
+              const response = await api.get(`/pokemon/${id}`);
+              return response.data;
             } catch (error) {
-              console.error(`Error fetching details for ${pokemon.name}:`, error);
+              console.error(`Error fetching details for Pokemon ID ${id}:`, error);
               return null;
             }
           })
         );
 
-        setPokemons(detailedPokemons.filter(pokemon => pokemon != null ));  
-        setLoadingTeam(false);  
+        // Filtrar solo los datos válidos
+        setTeamPokemons(detailedTeam.filter((pokemon) => pokemon !== null));
       } catch (error) {
-        console.error("Error fetching Pokémon list:", error);
-        setLoadingTeam(false);  
+        setError("Failed to load your team. Please try again.");
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchPokemons();
-  }, []);
+    if (team.length > 0) {
+      fetchTeamPokemons();
+    } else {
+      setTeamPokemons([]);
+      setLoading(false);
+    }
+  }, [team]);
 
-  const yourTeam = pokemons.filter((pokemon) =>
-    team.includes(pokemon.id)
-  );
+  if (loading) {
+    return (
+      <div className="loading-container-team">
+        <img
+          src="../../../public/loading-team.gif"
+          alt="Loading..."
+          className="loading-favs"
+        />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="error-message">{error}</p>;
+  }
 
   return (
     <div>
       <h1 className="favs-titol">Your team</h1>
       <div className={`d-flex flex-wrap gap-3 ${className}`}>
-        {loadingTeam ? (  
-          <div className="loading-container-team">
-            <img src="../../../public/loading-team.gif" alt="Loading..." className="loading-favs" />
-          </div>
-        ) : yourTeam.length > 0 ? (
-          yourTeam.map((pokemon) => (
+        {teamPokemons.length > 0 ? (
+          teamPokemons.map((pokemon) => (
             <BubbleCard key={pokemon.id} pokemon={pokemon} />
           ))
         ) : (
@@ -63,7 +75,6 @@ function TeamList({ className = ""}) {
       </div>
     </div>
   );
-  
 }
 
 export default TeamList;
