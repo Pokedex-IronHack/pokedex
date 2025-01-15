@@ -5,13 +5,9 @@
   margin: 0;
 }
 
-.card-hp p {
-  display: inline; /* Aseguramos que el texto HP y el icono estén en la misma línea */
-}
-
 .type-icon {
-  margin-bottom: 5px;
-  display: inline-block; /* Los iconos de tipo estarán en línea */
+  margin-bottom: 0px;
+  display: inline; 
 }
 
 .attacks-section ul {
@@ -34,12 +30,15 @@
 .energy-cost {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 3px ;
+
 }
 
 .energy-cost img {
   height: 20px;
   width: 20px;
+  padding: 0px; 
+  margin: 0px; 
 }
 
 .card-name {
@@ -75,9 +74,10 @@
 }
 
 .modal-content img.type-icon {
-  height: 25px;
-  width: 25px;
-  margin: 4px;
+  height: 20px;
+  width: 20px;
+  margin: 3px;
+  padding: 0px;
 }
 
 .abilities-section p {
@@ -110,7 +110,8 @@ h3 {
 
 .card-hp {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
@@ -145,5 +146,5 @@ h3 {
   list-style-type: none;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 0px;
 }
