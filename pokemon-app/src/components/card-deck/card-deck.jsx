@@ -78,8 +78,7 @@ function DeckCard({ pokedexId }) {
                 <h2 className="card-name"><strong>{cardData.name}</strong></h2>
 
                 <p className="card-hp">
-                  HP {cardData.hp}
-                  {cardData.types.map((type) => (
+                  HP {cardData.hp}{cardData.types.map((type) => (
                     <img
                       key={type}
                       src={typeIcons[type] || "/icons/default.png"}
