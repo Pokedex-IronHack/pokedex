@@ -5,7 +5,7 @@ import SearchBar from "../search-bar/search-bar";
 import "../pokemon-list/pokemon-list.css";
 import PokeballGif from "../../../public/loading.gif"; 
 
-const LIMIT = 1025;
+const LIMIT = 151;
 
 function PokemonList({ className = "" }) {
   const [pokemons, setPokemons] = useState([]);

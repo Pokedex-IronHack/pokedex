@@ -5,7 +5,7 @@ import { useFavorites } from "../../context/FavoritesContext";
 import { useTeam } from "../../context/TeamContext";
 
 
-function PokemonCard ({pokemon, showWarning, setShowWarning}) {
+function PokemonCard({ pokemon, showWarning, setShowWarning }) {
     function formatId(id) {
         let formattedId;
         if (id.toString().length === 1) {
@@ -18,14 +18,15 @@ function PokemonCard ({pokemon, showWarning, setShowWarning}) {
         return formattedId;
     }
 
-    const {favorites, setFavorites} = useFavorites(); 
-    const {team, setTeam} = useTeam(); 
+    const { favorites, setFavorites } = useFavorites(); 
+    const { team, setTeam } = useTeam(); 
 
-    function toggleFavorites (item) {
-        setFavorites((prev)=> 
-        prev.includes(item)
-            ? prev.filter((fav)=> fav !== item)
-        : [...prev, item]); 
+    function toggleFavorites(item) {
+        setFavorites((prev) => 
+            prev.includes(item)
+                ? prev.filter((fav) => fav !== item)
+                : [...prev, item]
+        ); 
     }
 
     function toggleTeam(item) {
@@ -66,24 +67,22 @@ function PokemonCard ({pokemon, showWarning, setShowWarning}) {
         }
     }
     
-
-
     return (
         <div className="pokemon-card">
-            <div className = "icons"> 
-            <div className="add" onClick={handleTeamClick}>
-                <ion-icon 
-                    name="add-circle"
-                    style={{color: isTeam ? 'lightblue' :'#C0C0C0' }}></ion-icon>
-            </div>
+            <div className="icons"> 
+                <div className="add" onClick={handleTeamClick}>
+                    <i 
+                        className="fa fa-plus-circle" 
+                        style={{ color: isTeam ? 'lightblue' : '#C0C0C0' }} 
+                    ></i>
+                </div>
 
-            <div className="favorite" onClick={handleFavoriteClick}>
-                <ion-icon 
-                    name="heart-circle" 
-                    style={{ color: isFavorite ? 'lightcoral' : '#C0C0C0 ' }}
-                ></ion-icon>
-            </div>
-            
+                <div className="favorite" onClick={handleFavoriteClick}>
+                    <i 
+                        className="fa fa-heart" 
+                        style={{ color: isFavorite ? 'lightcoral' : '#C0C0C0', fontSize: '30px' }} 
+                    ></i>
+                </div>
             </div>
             
             <div className="card-link-wrapper">
@@ -110,4 +109,3 @@ function PokemonCard ({pokemon, showWarning, setShowWarning}) {
 }
 
 export default PokemonCard;
- 

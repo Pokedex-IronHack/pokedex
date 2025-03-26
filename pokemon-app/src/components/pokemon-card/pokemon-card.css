@@ -14,7 +14,7 @@
 }
 
 .icons {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
@@ -39,8 +39,7 @@
     margin-bottom: 30px;
 }
 
-/*.pokemon-card:hover {
-    transform: scale(1.05); 
+.pokemon-card:hover {
+    transform: scale(1.0); 
     box-shadow: 0px 5px 15px rgba(30, 10, 60, 0.15), 0px 8px 18px rgba(30, 10, 60, 0.2); 
 }
-*/
